@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Overlay">
+<rect width="32" height="36" rx="8" fill="#FFD7F1" fill-opacity="0.2"/>
+<path id="Icon" d="M16 28C13.6833 27.4167 11.7708 26.0875 10.2625 24.0125C8.75417 21.9375 8 19.6333 8 17.1V11L16 8L24 11V17.1C24 19.6333 23.2458 21.9375 21.7375 24.0125C20.2292 26.0875 18.3167 27.4167 16 28V28M16 25.9C17.7333 25.35 19.1667 24.25 20.3 22.6C21.4333 20.95 22 19.1167 22 17.1V12.375L16 10.125L10 12.375V17.1C10 19.1167 10.5667 20.95 11.7 22.6C12.8333 24.25 14.2667 25.35 16 25.9V25.9M16 18V18V18V18V18V18V18V18V18V18" fill="#9D1A8F"/>
+</g>
+</svg>

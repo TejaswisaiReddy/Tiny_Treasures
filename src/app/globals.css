@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand: #941696;
+  --color-filter-border: #dc9fde;
+  --color-ink: #1c1b1f;
+  --font-sans: var(--font-roboto);
+}
+
+body { margin: 0; background: #f6f4f6; color: #1c1b1f; font-family: var(--font-roboto), Arial, sans-serif; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid #941696; outline-offset: 4px; }
+/* Show the message input's focus on its rounded container, not the inner rectangle. */
+.chat-composer:focus-within { border-color: var(--color-brand); box-shadow: inset 0 0 0 1px var(--color-brand); }
+.chat-composer textarea:focus-visible { outline: none; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+.logo { font-family: var(--font-logo), cursive; }
+.navigation { font-family: var(--font-jakarta), sans-serif; }
+.category-scroll { scrollbar-width: thin; scrollbar-color: #e5e7eb transparent; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.price-slider { appearance: none; height: 5px; border-radius: 9999px; cursor: pointer; }
+.price-slider::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; border: 2px solid white; border-radius: 50%; background: #941696; box-shadow: 0 0 0 2px #94169633, 0 2px 4px #0002; }
+.price-slider::-moz-range-thumb { width: 16px; height: 16px; border: 2px solid white; border-radius: 50%; background: #941696; box-shadow: 0 0 0 2px #94169633, 0 2px 4px #0002; }
