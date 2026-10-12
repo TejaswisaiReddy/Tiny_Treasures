@@ -17,7 +17,6 @@ export type Product = {
 const details = { category: "Clothing", size: "120", condition: "Good", location: "Tampere", rating: "4.8" };
 export const seasonalProducts: Product[] = [
   { ...details, id: "pink-1", name: "Pink Puffer Jacket", price: 24, image: "pink-jacket" },
-  { ...details, id: "pink-2", name: "Pink Puffer Jacket", price: 24, image: "pink-jacket" },
 ];
 export const recentProducts: Product[] = [
   { id: "hm-jumpsuit", name: "H&M Jumpsuit", price: 15, image: "cart/jumpsuit", category: "Clothing", size: "92", ageGroup: "1–2Y", brand: "H&M", condition: "Excellent", location: "Tampere", rating: "4.9", shortDescription: "Size: 92 (18–24M)" },
@@ -25,8 +24,6 @@ export const recentProducts: Product[] = [
   { id: "wooden-blocks", name: "Wooden Blocks Set", price: 12, image: "cart/wooden-blocks", category: "Toys", size: "One size", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Eco-friendly Wood" },
   { ...details, id: "winter-1", name: "Winter jacket", price: 30, image: "winter-jacket" },
   { ...details, id: "rain-1", name: "Rain Jacket", price: 15, image: "pink-jacket" },
-  { ...details, id: "rain-2", name: "Rain Jacket", price: 15, image: "pink-jacket" },
-  { ...details, id: "winter-2", name: "Winter jacket", price: 30, image: "winter-jacket" },
 ];
 
 export const allProducts = [...seasonalProducts, ...recentProducts];
