@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX/UI Trainee at Nokia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Kaushan+Script&display=swap" rel="stylesheet">
+<style>
+html,body{overflow-x:clip;max-width:100%}
+
+body{margin:0;background:#FFFFFF}
+a{color:#111}a:hover{color:#000}
+.lbl{font-family:'Roboto',sans-serif;font-weight:500;font-size:18px;color:#555555}
+/* WCAG 2.2 AA 2.5.8 target size: every link gets a 44px tall hit area */
+.lnk{position:relative;text-decoration:none;color:#111;display:inline-flex;align-items:center;min-height:44px}
+.back,a.back{display:inline-flex;align-items:center;gap:10px;min-height:44px}
+header nav > div > a{display:inline-flex;align-items:center;min-height:44px}
+.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.lnk:hover::after{transform:scaleX(1)}
+.pill{transition:transform .25s}.pill:hover{transform:translateY(-2px)}
+.cta{transition:background .25s,color .25s}.cta:hover{background:#111;color:#FFFFFF}
+.arrow{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cta:hover .arrow{transform:translateX(6px)}.back:hover .arrow{transform:translateX(-6px)}
+.nrow{transition:padding .3s}.nrow:hover{padding-left:12px !important}
+.card{transition:transform .4s,box-shadow .4s}.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.ghost{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}.hero:hover .ghost{transform:translateX(-40px)}
+@supports (animation-timeline: view()){
+  .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  @keyframes rise{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+}
+@media (max-width:900px){
+  .split{flex-direction:column !important}
+  .title{font-size:56px !important}
+  .h2{font-size:38px !important}
+  .g3{grid-template-columns:repeat(1,minmax(0,1fr)) !important}
+  .split > div[style*='240px']{flex:none !important}
+  .nav-links{display:none !important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+.brush{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M4 30 C 50 14 130 20 210 17 S 350 12 397 22 L 394 46 C 336 40 262 50 182 47 S 52 54 6 50 Z' fill='%23E3E0D9'/%3E%3C/svg%3E") no-repeat 0 78%/100% 58%;padding:0 .1em;margin:0 -.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.prog{position:fixed;top:0;left:0;right:0;height:4px;background:#111111;transform-origin:left;transform:scaleX(0);z-index:40;pointer-events:none}
+.cta:active,.pill:active,.tab:active{transform:scale(.97)}
+@supports (animation-timeline: view()){
+  .brush{animation:brushIn linear both;animation-timeline:view();animation-range:entry 20% cover 40%}
+  @keyframes brushIn{from{background-size:0% 58%}to{background-size:100% 58%}}
+}
+@supports (animation-timeline: scroll()){
+  .prog{animation:prog linear both;animation-timeline:scroll(root)}
+  @keyframes prog{to{transform:scaleX(1)}}
+}
+.cta:hover{background:#EDEDEA !important;color:#111111 !important}
+.cta.dk:hover{background:#3A3A3A !important;color:#FFFFFF !important}
+.cta.wt:hover{background:#DCDCDC !important;color:#111111 !important}
+.cta.ow:hover{background:rgba(255,255,255,.14) !important;color:#FFFFFF !important}
+.cta.nx:hover{background:#1F1F1F !important;color:#FFFFFF !important}
+.proof:hover{background:#EDEDEA !important;color:#111111 !important}
+.chap a:hover{background:#EDEDEA !important;color:#111111 !important}
+.cbody{font-size:20px !important;line-height:1.65}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1.5px solid #111111;border-bottom:1px solid #E8E8E8}
+.stat-i{padding:26px 24px 26px 0}
+.stat-i + .stat-i{padding-left:24px;border-left:1px solid #E8E8E8}
+.stat-v{font-size:48px;font-weight:900;letter-spacing:-0.04em;line-height:1}
+.stat-l{font-size:18px;color:#555555;margin-top:10px;line-height:1.4}
+@media (max-width:900px){
+  .cbody{font-size:17px !important}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-i{padding:20px 12px 20px 0 !important;border-left:0 !important}
+  .stat-v{font-size:34px}
+  .stat-l{font-size:16px}
+}
+.lbl{font-size:20px}.cs-n{font-size:20px}.body{font-size:23px}.cbody{font-size:23px !important}.stat-l{font-size:20px}.jc,.dcap{font-size:20px}.tab{font-size:19px}.dfacts p{font-size:23px}.hn{font-size:28px}.t-intro{font-size:26px}.t-desc{font-size:25px}.t-body{font-size:23px}.t-meta{font-size:20px}.t-h3{font-size:30px}.tag{font-size:19px}.proof{font-size:20px}
+@media (max-width:900px){
+  .t-intro,.t-desc{font-size:19px}
+  .t-body,.body,.cbody,.dfacts p{font-size:18px !important}
+  .t-meta,.lbl,.cs-n,.stat-l,.tag,.proof{font-size:17px}
+  .t-h3{font-size:23px}
+  .hn{font-size:22px}
+  [style*="font-size: 24px"]{font-size:20px !important}
+  [style*="font-size: 22px"]{font-size:18px !important}
+}
+
+.pill-short{display:none}
+@media (max-width:560px){
+  header nav{flex-wrap:nowrap !important;gap:10px !important;padding:12px 16px !important}
+  header nav > div{gap:14px !important;min-width:0}
+  header nav > div > a{font-size:20px !important;white-space:nowrap}
+  .nav-links{display:flex !important;gap:14px !important;font-size:15px !important}
+  .pill-long{display:none}
+  .pill-short{display:inline}
+  .pill{font-size:14px !important;padding:10px 14px !important;flex-shrink:0;white-space:nowrap}
+  .pill svg{width:15px;height:15px}
+}
+@media (max-width:560px){
+  .nshots{position:static !important;display:flex;overflow-x:auto;gap:14px;padding:20px 16px;align-items:flex-start;-webkit-overflow-scrolling:touch}
+  .nshot{width:150px;margin-top:0 !important;animation:none !important}
+  .nstage{height:auto !important;overflow:visible}
+  .jshot{max-width:150px;margin-top:0 !important;animation:none !important}
+  .hn{display:none}
+  .ghost{display:none !important}
+}
+</style>
+<style>#lb-root{position:fixed;inset:0;z-index:60}#lb-root[hidden]{display:none !important}</style>
+</head>
+<body>
+
+
+<div style="font-family: 'Roboto', system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%">
+  <div class="prog" aria-hidden="true"></div>
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid #E8E8E8">
+    <nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 40px">
+        <a href="index.html" style="font-family: 'Kaushan Script', cursive; font-size: 32px; text-decoration: none; color: #111111">Sai Tejaswi</a>
+        <div class="nav-links" style="display: flex; gap: 32px; font-weight: 500; font-size: 20px"><a class="lnk" href="index.html">Work</a></div>
+      </div>
+      <button type="button" data-copy class="pill" aria-label="Copy email address" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 20px; padding: 12px 22px; border: 0; border-radius: 999px; background: #111111; color: #FFFFFF; cursor: pointer; min-height: 44px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+        <span class="pill-long"><span data-b="navLabel">muthukurisaitejaswi@gmail.com</span></span><span class="pill-short">Email me</span>
+      </button>
+    </nav>
+  </header>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 64px">
+    <a href="index.html#work" class="back lnk" style="display: inline-flex; gap: 8px; align-items: center; font-weight: 500; font-size: 20px; margin-bottom: 48px"><span class="arrow" aria-hidden="true">←</span> All work</a>
+    <div class="split" style="display: flex; gap: 64px; align-items: flex-start">
+      <h1 class="title" style="flex: 1 1 45%; margin: 0; font-size: 104px; font-weight: 900; letter-spacing: -0.05em; line-height: .95">UX/UI Trainee<br>at Nokia</h1>
+      <div style="flex: 1 1 55%; display: flex; flex-direction: column; gap: 36px; padding-top: 12px">
+        <p style="margin: 0; font-size: 32px; line-height: 1.3; font-weight: 500; letter-spacing: -0.015em">Joining a live enterprise product mid-migration — rebuilding its screens for a new version, and adding to its design system without breaking it.</p>
+        <div style="display: flex; gap: 48px; flex-wrap: wrap">
+          <div><div class="lbl">Role</div><div style="font-size: 22px; margin-top: 6px">UX/UI Trainee</div></div>
+          <div><div class="lbl">Timeline</div><div style="font-size: 22px; margin-top: 6px">2025 · 6 months</div></div>
+          <div><div class="lbl">Focus</div><div style="font-size: 22px; margin-top: 6px">Interface updates · Accessibility</div></div>
+          <div><div class="lbl">Tools</div><div style="font-size: 22px; margin-top: 6px">Figma</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section aria-label="At a glance" style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 56px">
+    <div class="stats"><div class="stat-i"><div class="stat-v">6 months</div><div class="stat-l">UX/UI traineeship</div></div><div class="stat-i"><div class="stat-v">1</div><div class="stat-l">live product migrating to a new version</div></div><div class="stat-i"><div class="stat-v">WCAG 2.2</div><div class="stat-l">accessibility guidance I helped document</div></div><div class="stat-i"><div class="stat-v">4</div><div class="stat-l">working rules I followed</div></div></div>
+  </section>
+
+  <div class="hero" style="position: relative; background: #0E0E0E; color: #FFFFFF; overflow: hidden">
+    <span class="ghost" aria-hidden="true" style="position: absolute; right: -40px; bottom: -150px; font-size: 520px; font-weight: 900; letter-spacing: -0.06em; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #2A2A2A">NDA</span>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 140px 24px">
+      <div class="lbl" style="color: #BBBBBB">Why there are no screens here</div>
+      <p class="h2" style="margin: 16px 0 0; font-size: 64px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; max-width: 900px">This work is under NDA. So instead of screens, here’s the story.</p>
+    </div>
+  </div>
+
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 120px 24px 40px">
+    <div class="split" style="display: flex; gap: 64px; align-items: flex-start">
+      <div style="flex: 0 0 240px"><div class="lbl">01</div><h2 style="margin: 8px 0 0; font-size: 30px; font-weight: 900; letter-spacing: -0.02em">The situation</h2></div>
+      <div style="flex: 1">
+        <p class="h2" style="margin: 0; font-size: 48px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.08">A live product was moving to a new version. <span class="brush">Every screen had to follow.</span></p>
+        <p class="cbody" style="margin: 28px 0 0; line-height: 1.65; color: #333333; max-width: 820px">Nokia’s web application was migrating to a newer version of the product. The existing screens had to be updated to match — and every change had to fit a design system the whole team already depended on.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 40px">
+    <div class="split" style="display: flex; gap: 64px; align-items: flex-start">
+      <div style="flex: 0 0 240px"><div class="lbl">02</div><h2 style="margin: 8px 0 0; font-size: 30px; font-weight: 900; letter-spacing: -0.02em">The real challenge</h2></div>
+      <div style="flex: 1">
+        <p style="margin: 0; font-size: 40px; line-height: 1.2; font-weight: 900; letter-spacing: -0.025em">The new screens were the easy part. <span style="font-family: 'Kaushan Script', cursive; font-weight: 400; letter-spacing: 0">Making them feel like the old ones wasn’t.</span></p>
+        <p class="cbody" style="margin: 24px 0 0; line-height: 1.65; color: #333333; max-width: 820px">Nokia’s product has a lot of screens, and more than one designer working on them. If the button I drew didn’t match the team’s button, the product would slowly stop feeling like one product. So anything new I built had to follow the rules the design system already used.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 60px 24px 40px">
+    <div class="split" style="display: flex; gap: 64px; align-items: flex-start">
+      <div style="flex: 0 0 240px"><div class="lbl">03</div><h2 style="margin: 8px 0 0; font-size: 30px; font-weight: 900; letter-spacing: -0.02em">How I worked</h2></div>
+      <ol style="flex: 1; list-style: none; margin: 0; padding: 0; border-top: 1.5px solid #111111">
+        <li class="nrow" style="display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid #E8E8E8"><span style="font-size: 44px; font-weight: 900; letter-spacing: -0.04em; width: 72px; flex-shrink: 0">01</span><div><h3 style="margin: 0; font-size: 26px; font-weight: 900">Work from the newest version as my reference</h3><p class="cbody" style="margin: 8px 0 0; line-height: 1.6; color: #333333">I took the updated product version as the reference and rebuilt each screen in Figma to match it — checking every layout, state and label against it before calling a screen done.</p></div></li>
+        <li class="nrow" style="display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid #E8E8E8"><span style="font-size: 44px; font-weight: 900; letter-spacing: -0.04em; width: 72px; flex-shrink: 0">02</span><div><h3 style="margin: 0; font-size: 26px; font-weight: 900">Reuse first, then build what’s missing</h3><p class="cbody" style="margin: 8px 0 0; line-height: 1.6; color: #333333">I used the team’s existing tokens and library components wherever they fitted, and built new components where the newer version needed patterns the library didn’t cover yet — matching the system’s own rules so they belonged beside the originals.</p></div></li>
+        <li class="nrow" style="display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid #E8E8E8"><span style="font-size: 44px; font-weight: 900; letter-spacing: -0.04em; width: 72px; flex-shrink: 0">03</span><div><h3 style="margin: 0; font-size: 26px; font-weight: 900">Talk to developers early</h3><p class="cbody" style="margin: 8px 0 0; line-height: 1.6; color: #333333">I worked closely with developers and product colleagues on the smaller UI changes, instead of handing designs over at the end.</p></div></li>
+        <li class="nrow" style="display: flex; gap: 28px; padding: 28px 0; border-bottom: 1px solid #E8E8E8"><span style="font-size: 44px; font-weight: 900; letter-spacing: -0.04em; width: 72px; flex-shrink: 0">04</span><div><h3 style="margin: 0; font-size: 26px; font-weight: 900">Make accessibility checkable</h3><p class="cbody" style="margin: 8px 0 0; line-height: 1.6; color: #333333">I contributed to the UX team’s accessibility documentation using WCAG 2.2 guidance, making requirements and review points clearer for everyone.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 120px">
+    <div class="split" style="display: flex; gap: 64px; align-items: flex-start">
+      <div style="flex: 0 0 240px"><div class="lbl">04</div><h2 style="margin: 8px 0 0; font-size: 30px; font-weight: 900; letter-spacing: -0.02em">What I took from it</h2></div>
+      <div class="g3" style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+        <div class="card" style="border: 1px solid #E8E8E8; border-radius: 24px; padding: 32px"><h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 900">For me</h3><p class="cbody" style="margin: 0; line-height: 1.6; color: #333333">Working inside real constraints, explaining design decisions clearly to developers, and contributing to a shared design system rather than around it.</p></div>
+        <div class="card" style="background: #0E0E0E; color: #FFFFFF; border-radius: 24px; padding: 32px"><h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 900">For your team</h3><p class="cbody" style="margin: 0; line-height: 1.6; color: #DDDDDD">I can join an enterprise product, learn its system quickly, and add to it without breaking it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <a href="food-delivery.html" class="cta nx" style="display: block; background: #0E0E0E; color: #FFFFFF; text-decoration: none">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 100px 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px">
+      <div><div class="lbl" style="color: #BBBBBB">Next project</div><div class="h2" style="font-size: 80px; font-weight: 900; letter-spacing: -0.04em; margin-top: 10px">Food delivery app</div></div>
+      <span style="font-size: 64px" aria-hidden="true"><span class="arrow">→</span></span>
+    </div>
+  </a>
+</div>
+
+
+<script>window.PAGE={"demo":[],"arts":[],"lb":[],"email":"muthukurisaitejaswi@gmail.com"};</script>
+<script src="site.js"></script>
+</body>
+</html>
