@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sai Tejaswi — UX & Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;family=Roboto+Mono:wght@400;500&amp;family=Kaushan+Script&amp;display=swap" rel="stylesheet">
+<style>
+html,body{overflow-x:clip;max-width:100%}
+
+body{margin:0;background:#FFFFFF}
+a{color:#111}a:hover{color:#000}
+.mono{font-family:'Roboto',system-ui,sans-serif;font-weight:500;letter-spacing:0;text-transform:none}
+.fp{width:250px;aspect-ratio:424/954;flex-shrink:0;background:#111111;border-radius:42px;padding:9px;box-sizing:border-box;display:flex;flex-direction:column;position:relative;box-shadow:0 30px 50px rgba(0,0,0,.18);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.fp::before{content:"";position:absolute;inset:9px;border-radius:34px;background:#FFFFFF}
+.fp-t{position:relative;margin:auto 0 0;padding:0 22px;font-size:24px;font-weight:900;line-height:1.1;color:#111111}
+.fp-l{position:relative;margin:12px 22px auto;font-size:18px;font-weight:500;color:#555555}
+.work:hover .fp:nth-of-type(odd){transform:translateY(-18px)}
+.work:hover .fp:nth-of-type(even){transform:translateY(18px)}
+@supports (animation-timeline: view()){
+  .par1,.par2,.par3{animation-timeline:view();animation-range:cover;animation-fill-mode:both;animation-timing-function:linear}
+  .par1{animation-name:par1}.par2{animation-name:par2}.par3{animation-name:par3}
+  @keyframes par1{from{translate:0 90px}to{translate:0 -90px}}
+  @keyframes par2{from{translate:0 -70px}to{translate:0 70px}}
+  @keyframes par3{from{translate:0 140px}to{translate:0 -140px}}
+}
+/* WCAG 2.2 AA 2.5.8 target size: every link gets a 44px tall hit area */
+.lnk{position:relative;text-decoration:none;color:#111;display:inline-flex;align-items:center;min-height:44px}
+.back,a.back{display:inline-flex;align-items:center;gap:10px;min-height:44px}
+header nav > div > a{display:inline-flex;align-items:center;min-height:44px}
+.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.lnk:hover::after{transform:scaleX(1)}
+.pill-short{display:none}
+.pill{transition:background .25s,color .25s,transform .25s;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:560px){.pill{font-size:16px;padding:12px 16px}}
+.pill:hover{transform:translateY(-2px)}
+.pill:active{transform:scale(.97)}
+.arrow{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cta:hover .arrow{transform:translateX(6px)}
+.cta{transition:background .25s,color .25s}
+.cta:hover{background:#111;color:#FFFFFF}
+.stage{transition:background .5s}
+.phone{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.shot{filter:drop-shadow(0 24px 40px rgba(0,0,0,.16));transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.reel-track{animation:reel 60s linear infinite}
+.reel:hover .reel-track{animation-play-state:paused}
+@keyframes reel{to{transform:translateX(-50%)}}
+.reel-shot{filter:drop-shadow(0 10px 18px rgba(0,0,0,.12));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.reel-shot:hover{transform:translateY(-10px) scale(1.06)}
+.shot.ph-a{transform:rotate(-7deg) translateX(40px)}
+.shot.ph-c{transform:rotate(7deg) translateX(-40px)}
+.work:hover .shot.ph-a{transform:rotate(-2deg) translate(-20px,-24px)}
+.work:hover .shot.ph-b{transform:translateY(24px) scale(1.04)}
+.work:hover .shot.ph-c{transform:rotate(2deg) translate(20px,-30px)}
+.wall{position:absolute;left:50%;top:50%;width:1400px;height:1500px;margin:-750px 0 0 -700px;display:flex;justify-content:center;gap:24px;transform:rotate(-8deg)}
+.wcol{display:flex;flex-direction:column;flex-shrink:0;animation:wUp 46s linear infinite;will-change:transform}
+.wcol.dn{animation-name:wDn}
+.wcol img{filter:drop-shadow(0 18px 30px rgba(0,0,0,.2))}
+@keyframes wUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes wDn{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.stage:hover .wcol{animation-play-state:paused}
+.pk{position:absolute;inset:0}
+.pk-s{position:absolute;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.2));transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.pk-1{width:250px;left:50%;top:150px;margin-left:-390px;transform:rotate(-6deg)}
+.pk-2{width:290px;left:50%;top:70px;margin-left:-145px;z-index:2}
+.pk-3{width:250px;left:50%;top:170px;margin-left:140px;transform:rotate(6deg)}
+.work:hover .pk-1{transform:translate(-30px,-10px) rotate(-9deg)}
+.work:hover .pk-2{transform:translateY(-16px) scale(1.03)}
+.work:hover .pk-3{transform:translate(30px,-10px) rotate(9deg)}
+@keyframes chipF{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.mock-img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.work:hover .mock-img{transform:scale(1.06) rotate(-1deg)}
+.stage-dark{transition:none}
+.work:hover .stage-dark{background:#E9E7E3}
+.ghost{transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.work:hover .ghost{transform:translateX(30px)}
+.note{transition:opacity .4s, transform .5s;opacity:.85}
+.work:hover .note{opacity:1}
+.band-track{animation:band 28s linear infinite}
+@keyframes band{to{transform:translateX(-50%)}}
+@supports (animation-timeline: view()){
+  .work,.big,.sk-grid{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+}
+.work:hover .ph-a{transform:translateY(-14px)}
+.work:hover .ph-b{transform:translateY(18px)}
+.work:hover .ph-c{transform:translateY(-26px)}
+.work:hover .stage{filter:brightness(.98)}
+.tab{transition:background .2s,color .2s,border-color .2s;cursor:pointer;color:#111}
+.tab:hover{border-color:#111}
+.tab.on{background:#111;color:#FFFFFF;border-color:#111}
+.fade{animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.row{transition:padding .3s}
+.row:hover{padding-left:12px}
+.row:hover .yr{color:#111}
+.draw path{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.8s cubic-bezier(.6,0,.2,1) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.polaroid{transform:rotate(-4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.polaroid:hover{transform:rotate(0deg) scale(1.03)}
+.doodle{transition:transform .5s}
+.polaroid:hover .doodle{transform:rotate(-8deg) scale(1.1)}
+.sk{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.sk:nth-child(odd){transform:rotate(-2.5deg)}
+.sk:nth-child(even){transform:rotate(2deg) translateY(18px)}
+.sk:hover{transform:rotate(0) translateY(-8px) scale(1.04);box-shadow:0 24px 50px rgba(0,0,0,.14);z-index:2}
+.proof{font-size:18px;font-weight:500;padding:9px 16px;border:1.5px solid #111111;border-radius:999px;transition:background .2s,color .2s}
+.proof:hover{background:#111111;color:#FFFFFF}
+.aicard{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.aicard:hover{transform:translateY(-8px)}
+.aiimg{filter:drop-shadow(0 20px 30px rgba(0,0,0,.5));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.aicard:hover .aiimg{transform:translateY(-40px)}
+.cta.aout:hover{background:#FFFFFF;color:#111111}
+.pb-1,.pb-2,.pb-3{position:absolute;width:340px;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.18));transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.pb-1{left:50%;margin-left:-540px;top:110px}
+.pb-2{left:50%;margin-left:-170px;top:-200px}
+.pb-3{left:50%;margin-left:200px;top:50px}
+.work:hover .pb-1{transform:translateY(-24px)}
+.work:hover .pb-2{transform:translateY(24px)}
+.work:hover .pb-3{transform:translateY(-18px)}
+.wk-go{flex-shrink:0;width:64px;height:64px;border-radius:50%;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:28px;transition:background .3s,color .3s,transform .3s}
+.work:hover .wk-go{background:#111111;color:#FFFFFF;transform:translateX(6px)}
+.work:hover .ttl{text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:3px}
+.nk-old,.nk-new{position:absolute;background:#FFFFFF;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.12);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.nk-old{width:520px;height:340px;left:50%;margin-left:-470px;top:70px;opacity:.55;filter:grayscale(1)}
+.nk-new{width:640px;height:420px;left:50%;margin-left:-180px;top:110px;z-index:2}
+.nk-bar{height:44px;border-bottom:1px solid #EEEEEE;display:flex;align-items:center;gap:7px;padding:0 16px}
+.nk-bar i{width:11px;height:11px;border-radius:50%;background:#D6D6D2}
+.nk-old b,.nk-card b{display:block;height:12px;border-radius:6px;background:#DADAD6}
+.nk-new b{display:block;border-radius:6px}
+.nk-card{border:1px solid #E6E6E2;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.nk-ic{display:block;width:26px;height:26px;border-radius:8px;background:#FFFFFF}
+.nk-chip{position:absolute;z-index:3;font-size:18px;font-weight:700;padding:12px 20px;border-radius:999px;background:#FFFFFF;border:1.5px solid #111111;box-shadow:0 12px 30px rgba(0,0,0,.1);animation:chipF 5s ease-in-out infinite;white-space:nowrap}
+.nk-chip.c-a{left:50%;margin-left:-520px;top:430px}
+.nk-chip.c-b{left:50%;margin-left:380px;top:70px;background:#111111;color:#FFFFFF;animation-delay:-2s}
+.work:hover .nk-old{transform:translate(-24px,-10px)}
+.work:hover .nk-new{transform:translate(16px,-14px)}
+.t-intro{font-size:22px;line-height:1.65;color:#2B2B2B;margin:0}
+.t-desc{font-size:22px;line-height:1.6;color:#333333}
+.t-body{font-size:20px;line-height:1.6;color:#333333;margin:0}
+.t-meta{font-size:18px;font-weight:500;line-height:1.4;color:#555555}
+.t-h3{margin:0 0 10px;font-size:26px;font-weight:900;letter-spacing:-0.02em;line-height:1.15}
+.tag{font-size:17px;font-weight:500;color:#333333;padding:7px 14px;border-radius:999px;background:#F2F2F0}
+.step{background:#F7F7F5;border-radius:24px;padding:32px 28px;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
+.step:hover{transform:translateY(-6px);background:#F0F0ED}
+.step-n{display:block;font-size:44px;font-weight:900;letter-spacing:-0.04em;margin-bottom:18px}
+.sk-col{padding:28px 32px 28px 0;border-bottom:1px solid #E8E8E8}
+.sk-col + .sk-col{padding-left:32px;border-left:1px solid #E8E8E8}
+#contact .t-meta{color:#BBBBBB}
+.bob{animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+@media (max-width:900px){
+  .name{font-size:72px !important}
+  .role{font-size:34px !important}
+  .polaroid{width:260px !important}
+  .doodle{display:none}
+  .ai-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .sk-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .split{flex-direction:column !important}
+  .stage{height:460px !important}
+  .phone{width:180px !important;height:390px !important}
+  .ph-c{display:none !important}
+  .shot{width:170px !important}
+  .pk-1,.pk-3,
+  .pk-1,.pk-3{display:none}
+  .pk-2{width:220px;margin-left:-110px}
+  .fp{width:150px !important}
+  .fp-t{font-size:16px !important}
+  .note,.ghost{display:none}
+  .band-track{font-size:36px !important}
+  .hero-h{font-size:36px !important}
+  .big{font-size:56px !important}
+  .ttl{font-size:38px !important}
+  .pb-1,.pb-2{width:220px}
+  .pb-3{display:none}
+  .pb-1{margin-left:-235px;top:60px}
+  .pb-2{margin-left:15px;top:-120px}
+  .wk-go{display:none}
+  .nk-old{display:none}
+  .nk-new{width:300px;height:330px;margin-left:-150px;top:60px}
+  .nk-chip{display:none}
+  .t-intro{font-size:18px}
+  .t-desc{font-size:18px}
+  .t-body{font-size:17px}
+  .t-meta{font-size:16px}
+  .t-h3{font-size:22px}
+  .tag{font-size:15px}
+  .g4{grid-template-columns:repeat(1,minmax(0,1fr)) !important}
+  .g3{grid-template-columns:repeat(1,minmax(0,1fr)) !important}
+  .sk-col + .sk-col{padding-left:0;border-left:0}
+  .wk-text{display:block !important}
+  .split{align-items:flex-start !important}
+  .stage{height:520px !important}
+  .stage-nk{height:440px !important;padding:28px !important}
+  .nk-h{font-size:34px !important}
+  .tt-1,.tt-3{display:none}
+  .tt-2{width:200px;margin-left:-100px;top:56px}
+  .pk-2{width:200px;margin-left:-100px;top:56px}
+  .band{margin-left:0 !important;margin-right:0 !important}
+}
+@media (max-width:560px){
+  header nav{flex-wrap:nowrap !important;gap:10px !important;padding:12px 16px !important}
+  header nav > div{gap:14px !important;min-width:0}
+  header nav > div > a{font-size:20px !important;white-space:nowrap}
+  .nav-links{display:flex !important;gap:14px !important;font-size:15px !important}
+  .pill-long{display:none}
+  .pill-short{display:inline}
+  .pill{font-size:14px !important;padding:10px 14px !important;flex-shrink:0}
+  .pill svg{width:15px;height:15px}
+  .tt-logo{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.draw path{stroke-dashoffset:0}}
+.brush{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M4 30 C 50 14 130 20 210 17 S 350 12 397 22 L 394 46 C 336 40 262 50 182 47 S 52 54 6 50 Z' fill='%23E3E0D9'/%3E%3C/svg%3E") no-repeat 0 78%/100% 58%;padding:0 .1em;margin:0 -.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.prog{position:fixed;top:0;left:0;right:0;height:4px;background:#111111;transform-origin:left;transform:scaleX(0);z-index:40;pointer-events:none}
+.cta:active,.pill:active,.tab:active{transform:scale(.97)}
+@supports (animation-timeline: view()){
+  .brush{animation:brushIn linear both;animation-timeline:view();animation-range:entry 20% cover 40%}
+  @keyframes brushIn{from{background-size:0% 58%}to{background-size:100% 58%}}
+}
+@supports (animation-timeline: scroll()){
+  .prog{animation:prog linear both;animation-timeline:scroll(root)}
+  @keyframes prog{to{transform:scaleX(1)}}
+}
+.cta:hover{background:#EDEDEA !important;color:#111111 !important}
+.cta.dk:hover{background:#3A3A3A !important;color:#FFFFFF !important}
+.cta.wt:hover{background:#DCDCDC !important;color:#111111 !important}
+.cta.ow:hover{background:rgba(255,255,255,.14) !important;color:#FFFFFF !important}
+.cta.nx:hover{background:#1F1F1F !important;color:#FFFFFF !important}
+.proof:hover{background:#EDEDEA !important;color:#111111 !important}
+.chap a:hover{background:#EDEDEA !important;color:#111111 !important}
+.lbl{font-size:20px}.cs-n{font-size:20px}.body{font-size:23px}.cbody{font-size:23px !important}.stat-l{font-size:20px}.jc,.dcap{font-size:20px}.tab{font-size:19px}.dfacts p{font-size:23px}.hn{font-size:28px}.t-intro{font-size:26px}.t-desc{font-size:25px}.t-body{font-size:23px}.t-meta{font-size:20px}.t-h3{font-size:30px}.tag{font-size:19px}.proof{font-size:20px}
+@media (max-width:900px){
+  .t-intro,.t-desc{font-size:19px}
+  .t-body,.body,.cbody,.dfacts p{font-size:18px !important}
+  .t-meta,.lbl,.cs-n,.stat-l,.tag,.proof{font-size:17px}
+  .t-h3{font-size:23px}
+  .hn{font-size:22px}
+  [style*="font-size: 24px"]{font-size:20px !important}
+  [style*="font-size: 22px"]{font-size:18px !important}
+}
+.step-fig{margin:0 0 24px}
+.step-fig img{width:100%;height:280px;object-fit:cover;object-position:top;border-radius:16px;background:#FFFFFF;display:block;box-shadow:0 10px 24px rgba(0,0,0,.06);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.step:hover .step-fig img{transform:scale(1.02)}
+.step-fig figcaption{margin-top:10px;font-family:'Kaushan Script',cursive;font-size:22px;color:#333333}
+
+.tt{position:absolute;inset:0}
+.tt-s{position:absolute;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.2));transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.tt-1{width:240px;left:50%;top:132px;margin-left:-392px;transform:rotate(-6deg)}
+.tt-2{width:280px;left:50%;top:52px;margin-left:-140px;z-index:2}
+.tt-3{width:240px;left:50%;top:124px;margin-left:152px;transform:rotate(6deg)}
+.work:hover .tt-1{transform:translate(-30px,-10px) rotate(-9deg)}
+.work:hover .tt-2{transform:translateY(-16px) scale(1.03)}
+.work:hover .tt-3{transform:translate(30px,-10px) rotate(9deg)}
+@media (max-width:900px){
+  .tt-1,.tt-3,
+  .tt-2{width:220px;margin-left:-110px}
+    }
+</style>
+<style>#lb-root{position:fixed;inset:0;z-index:60}#lb-root[hidden]{display:none !important}</style>
+</head>
+<body>
+
+
+<div style="font-family: 'Roboto', system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%; min-height: 100vh">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid #E8E8E8">
+    <nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 40px">
+        <a href="#top" style="font-family: 'Kaushan Script', cursive; font-size: 32px; text-decoration: none; color: #111111">Sai Tejaswi</a>
+        <div class="nav-links" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 22px">
+          <a class="lnk" href="#work">Work</a>
+                    <a class="lnk" href="#story">About</a>
+        </div>
+      </div>
+      <button type="button" data-copy class="pill" aria-label="Copy email address" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 20px; padding: 12px 22px; border: 1.5px solid #111111; border-radius: 999px; background: #111111; color: #FFFFFF; cursor: pointer; min-height: 44px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+        <span class="pill-long"><span data-b="navLabel">muthukurisaitejaswi@gmail.com</span></span><span class="pill-short">Email me</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 72px">
+    <div class="split" style="display: flex; gap: 56px; align-items: center; justify-content: space-between">
+      <div style="flex: 1 1 60%; min-width: 0">
+        <div class="mono" style="font-size: 20px; color: #555555; margin-bottom: 8px">Hello, I’m</div>
+        <h1 class="name" style="margin: 0; font-family: 'Kaushan Script', cursive; font-weight: 400; font-size: 150px; line-height: 1; letter-spacing: -0.01em">Sai Tejaswi</h1>
+        <div style="position: relative; display: inline-block; margin-top: 18px">
+          
+          <svg class="draw" viewBox="0 0 600 30" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: -6px; bottom: -18px; width: calc(100% + 12px); height: 22px"><path d="M4 18 C 120 6, 240 26, 360 12 S 540 8, 596 16" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"></path></svg>
+        <p class="role" style="margin: 0; font-size: 56px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">UX &amp; Product Designer</p></div>
+      </div>
+
+      <figure class="polaroid" style="flex: 0 0 auto; margin: 0; position: relative; width: min(340px, 100%); background: #FFFFFF; padding: 16px 16px 56px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 24px 50px rgba(0,0,0,.12)">
+        <span aria-hidden="true" style="position: absolute; top: -14px; left: 50%; max-width: 110px; height: 30px; margin-left: -55px; background: rgba(210,210,204,.75); transform: rotate(-3deg)"></span>
+        <img src="images/0194be3e8fed066776bc88812ae57990.webp" alt="Sai Tejaswi smiling in front of a waterfall" style="width: 100%; height: 360px; object-fit: cover; object-position: 50% 28%; display: block">
+        <figcaption style="position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-family: 'Kaushan Script', cursive; font-size: 24px">that’s me ✎</figcaption>
+        <svg class="draw doodle" viewBox="0 0 120 90" aria-hidden="true" style="position: absolute; left: -110px; bottom: 40px; max-width: 120px; height: 90px"><path d="M6 20 C 30 70, 70 80, 104 60" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round"></path><path d="M92 50 L106 60 L90 70" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg class="draw doodle" viewBox="0 0 60 60" aria-hidden="true" style="position: absolute; right: -34px; top: 30px; width: 60px; height: 60px"><path d="M30 6 L35 24 L54 26 L39 36 L44 54 L30 43 L16 54 L21 36 L6 26 L25 24 Z" fill="none" stroke="#111111" stroke-width="2" stroke-linejoin="round"></path></svg>
+      </figure>
+    </div>
+
+    <p class="hero-h" style="margin: 48px 0 0; font-size: 60px; line-height: 1.06; font-weight: 900; letter-spacing: -0.035em; max-width: 1050px">
+      <span style="color: #6B6B6B">I sketch to think.</span> I listened for a living. Now I design so people don’t need to ask for help.
+    </p>
+    <div style="margin-top: 32px; max-width: 980px">
+        <div class="t-intro" style="max-width: 62ch"><div><p>UX and Product Designer in Tampere, Finland. Three years on IBM’s technical support desk taught me where people actually get stuck — now I turn that into research, interaction design and prototypes you can click.</p><div></div></div></div>
+        <ul aria-label="What I bring" style="list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px">
+          <li class="proof">User research</li><li class="proof">Interaction design</li><li class="proof">Design systems</li><li class="proof">WCAG 2.2</li><li class="proof">AI prototyping</li>
+        </ul>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px">
+        <a href="#work" class="cta dk" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border: 1.5px solid #111111; border-radius: 999px; background: #111111; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 22px; min-height: 44px; box-sizing: border-box">See my work <span class="arrow bob" aria-hidden="true">↓</span></a>
+        <a href="https://tiny-treasures-mu.vercel.app/" class="cta" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border: 1.5px solid #111111; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 22px; color: #111111; min-height: 44px; box-sizing: border-box">Try the live prototype <span class="arrow" aria-hidden="true">↗</span></a>
+      </div></div>
+    <p class="t-meta" style="margin: 36px 0 0; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: rgb(17, 17, 17); display: inline-block"></span>Open to UX and Product Designer opportunities&nbsp;</p>
+  </section>
+
+  <!-- WORK -->
+
+
+  <!-- SKETCHBOOK -->
+  
+
+
+
+  
+
+  <!-- MARQUEE BAND -->
+  <section id="work" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 40px; border-top: 1px solid #E8E8E8">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px">
+      <h2 class="big" style="margin: 0; font-size: 96px; font-weight: 900; letter-spacing: -0.04em; line-height: 1">Selected work.</h2>
+      <p class="t-body" style="margin: 0; max-width: 440px">Two end-to-end case studies, one industry role and the practice project where it all started.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 88px">
+
+      <!-- CASE 01 · TINY TREASURES -->
+      <a class="work" href="tiny-treasures.html" style="display: block; text-decoration: none; color: #111111">
+        <div class="stage stage-light" style="position: relative; height: 700px; background: #F2F2F0; border-radius: 32px; overflow: hidden; box-sizing: border-box">
+          <span class="ghost" aria-hidden="true" style="position: absolute; right: -20px; bottom: -110px; font-size: 460px; font-weight: 900; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px #D9D9D6; pointer-events: none">01</span>
+          <img class="tt-logo" src="images/56e6e34518e24a3d8c5a49e3f4023fbb.webp" alt="" aria-hidden="true" style="position: absolute; left: 40px; top: 36px; max-width: 220px; height: auto; z-index: 4">
+          <div class="tt" role="img" aria-label="Tiny Treasures home, AI-assisted listing and parent trust screens">
+            <img class="tt-s tt-1" src="images/4dc77fc3bfcdfee90d501b83ea16e8d2.webp" alt="" loading="lazy" decoding="async">
+            <img class="tt-s tt-2" src="images/2f064554c62eb4190c7d6d8e580a90b2.webp" alt="" loading="lazy" decoding="async">
+            <img class="tt-s tt-3" src="images/4a6499a365e08ed47139b1f86fa32943.webp" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="wk-text" style="margin-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px">
+          <div style="max-width: 880px">
+            <p class="t-meta" style="margin: 0 0 12px">End-to-end case study · Mobile app · Sep 2025 – May 2026</p>
+            <h3 class="ttl" style="margin: 0; font-size: 52px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">Tiny Treasures</h3>
+            <p class="t-desc" style="margin: 16px 0 0; max-width: 62ch">Parents give outgrown kids’ things away because listing them takes longer than they’re worth. Research with 25 parents, then a marketplace built around photo-first listing, age-and-size search and visible seller trust.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px"><span class="tag">Research with 25 parents</span><span class="tag">UX/UI design</span><span class="tag">AI-assisted listing</span><span class="tag">Live front-end prototype</span></div>
+          </div>
+          <span class="wk-go" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <!-- CASE 02 · FAIR-PRICE DELIVERY -->
+      <a class="work" href="pickde.html" style="display: block; text-decoration: none; color: #111111">
+        <div class="stage stage-light" style="position: relative; height: 700px; background: #F2F2F0; border-radius: 32px; overflow: hidden; display: flex; justify-content: center; align-items: flex-start; gap: 22px; padding: 0 24px; box-sizing: border-box">
+          <span class="ghost" aria-hidden="true" style="position: absolute; right: -20px; bottom: -110px; font-size: 460px; font-weight: 900; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px #D9D9D6; pointer-events: none">02</span>
+          <div class="pk" role="img" aria-label="Pickde home, dish and cart screens with the app’s three promises">
+            <img class="pk-s pk-1" src="images/bb2c968523dac19f1a90da42418c6580.webp" alt="" loading="lazy" decoding="async">
+            <img class="pk-s pk-2" src="images/757a6df906aec5aeceacedb3842a16a9.webp" alt="" loading="lazy" decoding="async">
+            <img class="pk-s pk-3" src="images/8ae78b81540676ce954c0d517fe458d7.webp" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="wk-text" style="margin-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px">
+          <div style="max-width: 880px">
+            <p class="t-meta" style="margin: 0 0 12px">End-to-end case study · Mobile app · Nov 2024 – Mar 2025</p>
+            <h3 class="ttl" style="margin: 0; font-size: 52px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">Pickde</h3>
+            <p class="t-desc" style="margin: 16px 0 0; max-width: 62ch">The price in the app is rarely the price on the menu. A survey of 78 people, then a delivery concept where the menu price holds, every fee is shown before checkout, and a missing item takes three taps to report.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px"><span class="tag">Survey of 78 people</span><span class="tag">UX/UI design</span><span class="tag">WCAG 2.2 AA checks</span><span class="tag">16-screen prototype</span></div>
+          </div>
+          <span class="wk-go" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <!-- CASE 03 · NOKIA -->
+      <a class="work" href="nokia.html" style="display: block; text-decoration: none; color: #111111">
+        <div class="stage stage-nk" style="position: relative; height: 520px; background: #0E0E0E; color: #FFFFFF; border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 56px; box-sizing: border-box">
+          <span class="ghost" aria-hidden="true" style="position: absolute; right: -20px; bottom: -110px; font-size: 460px; font-weight: 900; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px #3A3A3A; pointer-events: none">03</span>
+          <div style="font-size: 20px; color: #BBBBBB; position: relative">Work under NDA — screens and details stay private.</div>
+          <div style="position: relative">
+            <div class="nk-h" style="font-size: 88px; font-weight: 900; letter-spacing: -0.045em; line-height: .98">Real product.<br><span style="color: transparent; -webkit-text-stroke: 1.5px #FFFFFF">Real constraints.</span></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px">
+              <span style="font-size: 20px; font-weight: 500; padding: 10px 18px; border: 1.5px solid #555555; border-radius: 999px">Figma</span>
+              <span style="font-size: 20px; font-weight: 500; padding: 10px 18px; border: 1.5px solid #555555; border-radius: 999px">Design system</span>
+              <span style="font-size: 20px; font-weight: 500; padding: 10px 18px; border: 1.5px solid #555555; border-radius: 999px">WCAG 2.2</span>
+              <span style="font-size: 20px; font-weight: 500; padding: 10px 18px; border: 1.5px solid #555555; border-radius: 999px">Developer handoff</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wk-text" style="margin-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px">
+          <div style="max-width: 880px">
+            <p class="t-meta" style="margin: 0 0 12px">Industry experience · Enterprise web app · 2025, 6 months</p>
+            <h3 class="ttl" style="margin: 0; font-size: 52px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">UX/UI Trainee at Nokia</h3>
+            <div class="t-desc" style="margin: 16px 0 0; max-width: 62ch"><p>Six months on a live enterprise web app moving to a new version — working inside an existing design system, building only what was missing, and making accessibility something the team could check.</p><p></p></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px"><span class="tag">Figma</span><span class="tag">Design system</span><span class="tag">Accessibility documentation</span><span class="tag">Under NDA</span></div>
+          </div>
+          <span class="wk-go" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <!-- CASE 04 · FOOD DELIVERY PRACTICE -->
+      <a class="work" href="food-delivery.html" style="display: block; text-decoration: none; color: #111111">
+        <div class="stage mock" style="position: relative; height: 620px; background: #F2F2F0; border-radius: 32px; overflow: hidden; display: flex; justify-content: center; align-items: center">
+          <img class="mock-img" src="images/b344a2bb6bdd981156d0dcb5bd81c038.webp" alt="Two phone mockups showing the food delivery app’s onboarding screens" style="position: relative; z-index: 1; height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; mix-blend-mode: multiply" loading="lazy" decoding="async">
+          <span class="ghost" aria-hidden="true" style="position: absolute; right: -20px; bottom: -110px; font-size: 460px; font-weight: 900; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px #D9D9D6; pointer-events: none">04</span>
+        </div>
+
+        <div class="wk-text" style="margin-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px">
+          <div style="max-width: 880px">
+            <p class="t-meta" style="margin: 0 0 12px">Practice project · Mobile app</p>
+            <h3 class="ttl" style="margin: 0; font-size: 52px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">Food delivery app</h3>
+            <p class="t-desc" style="margin: 16px 0 0">Where I learned the craft. Twenty connected screens built from my own style guide, reusable components and a clickable Figma prototype.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px"><span class="tag">UI design</span><span class="tag">Components</span><span class="tag">Prototyping</span></div>
+          </div>
+          <span class="wk-go" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </div>
+  </section><div class="band" aria-hidden="true" style="background: #0E0E0E; color: #FFFFFF; overflow: hidden; padding: 28px 0; transform: rotate(-1.5deg); margin: 20px -20px 60px">
+    <div class="band-track" style="display: flex; width: max-content; gap: 48px; align-items: center; white-space: nowrap; font-size: 64px; font-weight: 900; letter-spacing: -0.03em">
+      <span>Listen</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Sketch</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Prototype</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Test</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span style="color: transparent; -webkit-text-stroke: 1.5px #FFFFFF">Repeat</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span>
+      <span>Listen</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Sketch</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Prototype</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span>Test</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span><span style="color: transparent; -webkit-text-stroke: 1.5px #FFFFFF">Repeat</span><span style="font-family: 'Kaushan Script', cursive; font-weight: 400">✎</span>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <section id="approach" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 40px">
+    <div class="split" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 56px">
+      <h2 class="big" style="margin: 0; font-size: 96px; font-weight: 900; letter-spacing: -0.04em; line-height: 1">How I work.</h2>
+      <p class="t-body" style="margin: 0; max-width: 440px">A thoughtful process that combines listening, visual exploration, structured design, and hands-on prototyping.</p>
+    </div>
+    <ol class="g4" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+      <li class="step"><span class="step-n">01</span><h3 class="t-h3">Listen first</h3><div class="t-body"><p></p><div></div><p></p><p><span>I </span><span>use </span><span>surveys </span><span>and </span><span>interviews </span><span>to </span><span>understand </span><span>people's </span><span>needs, </span><span>frustrations, </span><span>and </span><span>existing </span><span>behaviours </span><span>before </span><span>deciding </span><span>what </span><span>to </span><span>design. </span><span>In </span><span>Tiny </span><span>Treasures, </span><span>I </span><span>gathered </span><span>input </span><span>from </span><span>25 </span><span>parents; </span><span>in </span><span>Pickde, </span><span>I </span><span>surveyed </span><span>78 </span><span>people.</span></p><div></div></div></li>
+      <li class="step"><span class="step-n">02</span><h3 class="t-h3">Sketch on paper</h3><p class="t-body">I use quick sketches to explore layouts and alternative ideas before committing to detailed screens. Drawing helps me work through possibilities early, when changes are still easy to make.</p></li>
+      <li class="step"><span class="step-n">03</span><h3 class="t-h3">Design in systems</h3><p class="t-body">Reusable components, consistent patterns and WCAG 2.2 checks — habits I built inside Nokia’s design system.</p></li>
+      <li class="step"><span class="step-n">04</span><h3 class="t-h3">Prototype and build</h3><p class="t-body">I turn flows into clickable Figma prototypes, and use AI coding tools to build front-end prototypes people can click through.</p></li>
+    </ol>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 24px">
+    <h2 style="margin: 0 0 32px; font-size: 48px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.05">Skills &amp; tools</h2>
+    <div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1.5px solid #111111">
+      <div class="sk-col"><h3 class="t-h3">Research</h3><p class="t-body">Surveys and interviews · Research synthesis · Personas and journey maps · Competitive analysis · Heuristic evaluation</p></div>
+      <div class="sk-col"><h3 class="t-h3">Design</h3><p class="t-body">Interaction design · Information architecture · UX writing · Design systems · Accessibility (WCAG 2.2)</p></div>
+      <div class="sk-col"><h3 class="t-h3">Tools &amp; AI</h3><p class="t-body">Figma prototyping · AI-assisted prototyping · AI coding tools · VS Code · Sketching and painting</p></div>
+    </div>
+  </section>
+
+  <!-- STORY / ABOUT -->
+  
+
+  <!-- FOOTER -->
+  <section id="story" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px">
+    <div class="split" style="display: flex; gap: 64px">
+      <div style="flex: 1 1 40%">
+        <div class="t-meta" style="margin-bottom: 20px">About me</div>
+        <h2 style="margin: 0; font-size: 64px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.02">The pencil and the headset.</h2><p class="t-body" style="margin: 28px 0 0; max-width: 46ch">I came to design from the other side of the support line. Three years at IBM, listening to people describe what had gone wrong, taught me more about where products fail than any brief has since. The pencil is how I think it through before anything reaches a screen.</p>
+      </div>
+      <div style="flex: 1 1 60%; display: flex; flex-direction: column">
+        
+        
+        <div style="border-top: 1px solid #E8E8E8">
+          <div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">Now</span><span style="flex: 1; font-weight: 700; font-size: 24px">Designing and building with AI</span><span style="font-size: 20px; color: #555555">From Figma prototype to coded front end</span></div>
+<div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">Always</span><span style="flex: 1; font-weight: 700; font-size: 24px">Drawing and painting</span><span style="font-size: 20px; color: #555555">How I explore ideas before the screen</span></div>
+<div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">2026</span><span style="flex: 1; font-weight: 700; font-size: 24px">Master’s in Information Technology</span><span style="font-size: 20px; color: #555555">Metropolia UAS</span></div>
+<div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">Feb–Aug 2025</span><span style="flex: 1; font-weight: 700; font-size: 24px">UX/UI Trainee</span><span style="font-size: 20px; color: #555555">Nokia</span></div>
+<div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">May 2023 – Jan 2025</span><span style="flex: 1; font-weight: 700; font-size: 24px">UX Researcher &amp; Designer</span><span style="font-size: 20px; color: #555555">ThinkHive Technologies, India</span></div>
+<div class="row" style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E8E8E8; flex-wrap: wrap; align-items: baseline"><span class="mono yr" style="width: 150px; flex: 0 0 auto; font-size: 20px; color: #6B6B6B">2018–2021</span><span style="flex: 1; font-weight: 700; font-size: 24px">Technical Support Associate</span><span style="font-size: 20px; color: #555555">IBM</span></div>
+        </div>
+      </div>
+    </div>
+  </section><section id="contact" style="background: #111111; color: #FFFFFF">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 48px">
+      <div class="t-meta" style="color: #BBBBBB; margin-bottom: 24px">Let’s talk</div>
+      <h2 class="big" style="margin: 0; font-size: 96px; font-weight: 900; letter-spacing: -0.04em; line-height: 1">Let’s make it<br>easier to use.</h2>
+      <p class="t-intro" style="margin: 32px 0 0; max-width: 720px; color: #DDDDDD">I’m looking for a UX or Product Designer role in Finland. If your team needs someone who listens first, designs in systems and can show a working prototype, I’d love to hear from you.</p>
+      <div style="display: flex; gap: 28px; flex-wrap: wrap; margin-top: 48px; align-items: center; font-size: 20px">
+        <button type="button" data-copy class="pill" style="font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 20px; padding: 16px 26px; border-radius: 999px; border: 1.5px solid #FFFFFF; background: #FFFFFF; color: #111111; cursor: pointer; min-height: 44px"><span data-b="navLabel">muthukurisaitejaswi@gmail.com</span></button>
+        <a href="https://www.linkedin.com/in/sai-tejaswi-muthukuri-2201ab143/" target="_blank" rel="noopener" class="lnk" style="color: #FFFFFF; font-weight: 500; font-size: 22px">LinkedIn ↗</a>
+        <a href="Sai-Tejaswi-Muthukuri-CV.pdf" download="Sai-Tejaswi-Muthukuri-CV.pdf" target="_blank" rel="noopener" class="lnk" style="color: #FFFFFF; font-weight: 500; font-size: 22px">Download CV ↓</a>
+      </div>
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 120px; padding-top: 24px; border-top: 1px solid #333333">
+        <span style="font-family: 'Kaushan Script', cursive; font-size: 26px">Sai Tejaswi</span>
+        <span class="t-meta" style="color: #BBBBBB">Tampere, Finland · Designed with a pencil first · 2026</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script>window.PAGE={"demo":[],"arts":[],"lb":[],"email":"muthukurisaitejaswi@gmail.com"};</script>
+<script src="site.js"></script>
+</body>
+</html>

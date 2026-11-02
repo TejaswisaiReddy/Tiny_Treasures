@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Food delivery app</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Kaushan+Script&display=swap" rel="stylesheet">
+<style>
+html,body{overflow-x:clip;max-width:100%}
+
+body{margin:0;background:#FFFFFF}
+a{color:#111}a:hover{color:#000}
+.lbl{font-family:'Roboto',sans-serif;font-weight:500;font-size:18px;color:#555555}
+/* WCAG 2.2 AA 2.5.8 target size: every link gets a 44px tall hit area */
+.lnk{position:relative;text-decoration:none;color:#111;display:inline-flex;align-items:center;min-height:44px}
+.back,a.back{display:inline-flex;align-items:center;gap:10px;min-height:44px}
+header nav > div > a{display:inline-flex;align-items:center;min-height:44px}
+.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.lnk:hover::after{transform:scaleX(1)}
+.pill{transition:transform .25s}.pill:hover{transform:translateY(-2px)}
+.cta{transition:background .25s,color .25s}.cta:hover{background:#111;color:#FFFFFF}
+.arrow{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cta:hover .arrow{transform:translateX(6px)}.back:hover .arrow{transform:translateX(-6px)}
+.wall{position:absolute;left:50%;top:50%;width:1700px;height:1700px;margin:-850px 0 0 -850px;display:flex;justify-content:center;gap:26px;transform:rotate(-8deg)}
+.wcol{display:flex;flex-direction:column;flex-shrink:0;animation:wUp 50s linear infinite;will-change:transform}
+.wcol.dn{animation-name:wDn}
+.wcol img{filter:drop-shadow(0 18px 30px rgba(0,0,0,.18))}
+@keyframes wUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes wDn{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.hero-stage:hover .wcol{animation-play-state:paused}
+.mock-img{transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.hero-stage:hover .mock-img{transform:scale(1.05)}
+.jrow{position:relative;height:560px;border-radius:32px;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;gap:22px;padding:0 32px;background:#F2F2F0}
+.jshot{flex:1 1 0;min-width:0;max-width:210px;background:none;border:0;padding:0;cursor:zoom-in;animation:flt 7s ease-in-out infinite}
+.jshot.hi{margin-top:36px}
+.jshot.lo{margin-top:140px;animation-name:flt2}
+.jshot img{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.18));transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.jshot:hover img{transform:scale(1.06)}
+.jrow:hover .jshot{animation-play-state:paused}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+@keyframes flt2{0%,100%{transform:translateY(0)}50%{transform:translateY(30px)}}
+.jcap{display:flex;justify-content:center;gap:22px;padding:0 32px;margin-top:18px}
+.jc{flex:1 1 0;min-width:0;max-width:210px;text-align:center;font-size:18px;font-weight:500;line-height:1.35}
+.lb{animation:lbIn .3s ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lb img{animation:pop .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.lbbtn{transition:background .2s,color .2s}
+.lbbtn:hover{background:#FFFFFF;color:#111}
+@supports (animation-timeline: view()){
+  .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  @keyframes rise{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+}
+@media (max-width:900px){
+  .split{flex-direction:column !important}
+  .title{font-size:56px !important}
+  .h2{font-size:38px !important}
+  .hero-stage{height:460px !important}
+  .g3{grid-template-columns:repeat(1,minmax(0,1fr)) !important}
+  .jrow{height:440px;overflow-x:auto;justify-content:flex-start;padding:0 16px}
+  .jshot{flex:0 0 150px}
+  .jcap{display:none}
+  .nav-links{display:none !important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+.brush{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M4 30 C 50 14 130 20 210 17 S 350 12 397 22 L 394 46 C 336 40 262 50 182 47 S 52 54 6 50 Z' fill='%23E3E0D9'/%3E%3C/svg%3E") no-repeat 0 78%/100% 58%;padding:0 .1em;margin:0 -.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.prog{position:fixed;top:0;left:0;right:0;height:4px;background:#111111;transform-origin:left;transform:scaleX(0);z-index:40;pointer-events:none}
+.cta:active,.pill:active,.tab:active{transform:scale(.97)}
+@supports (animation-timeline: view()){
+  .brush{animation:brushIn linear both;animation-timeline:view();animation-range:entry 20% cover 40%}
+  @keyframes brushIn{from{background-size:0% 58%}to{background-size:100% 58%}}
+}
+@supports (animation-timeline: scroll()){
+  .prog{animation:prog linear both;animation-timeline:scroll(root)}
+  @keyframes prog{to{transform:scaleX(1)}}
+}
+.cta:hover{background:#EDEDEA !important;color:#111111 !important}
+.cta.dk:hover{background:#3A3A3A !important;color:#FFFFFF !important}
+.cta.wt:hover{background:#DCDCDC !important;color:#111111 !important}
+.cta.ow:hover{background:rgba(255,255,255,.14) !important;color:#FFFFFF !important}
+.cta.nx:hover{background:#1F1F1F !important;color:#FFFFFF !important}
+.proof:hover{background:#EDEDEA !important;color:#111111 !important}
+.chap a:hover{background:#EDEDEA !important;color:#111111 !important}
+.cbody{font-size:20px !important;line-height:1.65}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1.5px solid #111111;border-bottom:1px solid #E8E8E8}
+.stat-i{padding:26px 24px 26px 0}
+.stat-i + .stat-i{padding-left:24px;border-left:1px solid #E8E8E8}
+.stat-v{font-size:48px;font-weight:900;letter-spacing:-0.04em;line-height:1}
+.stat-l{font-size:18px;color:#555555;margin-top:10px;line-height:1.4}
+@media (max-width:900px){
+  .cbody{font-size:17px !important}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-i{padding:20px 12px 20px 0 !important;border-left:0 !important}
+  .stat-v{font-size:34px}
+  .stat-l{font-size:16px}
+}
+.lbl{font-size:20px}.cs-n{font-size:20px}.body{font-size:23px}.cbody{font-size:23px !important}.stat-l{font-size:20px}.jc,.dcap{font-size:20px}.tab{font-size:19px}.dfacts p{font-size:23px}.hn{font-size:28px}.t-intro{font-size:26px}.t-desc{font-size:25px}.t-body{font-size:23px}.t-meta{font-size:20px}.t-h3{font-size:30px}.tag{font-size:19px}.proof{font-size:20px}
+@media (max-width:900px){
+  .t-intro,.t-desc{font-size:19px}
+  .t-body,.body,.cbody,.dfacts p{font-size:18px !important}
+  .t-meta,.lbl,.cs-n,.stat-l,.tag,.proof{font-size:17px}
+  .t-h3{font-size:23px}
+  .hn{font-size:22px}
+  [style*="font-size: 24px"]{font-size:20px !important}
+  [style*="font-size: 22px"]{font-size:18px !important}
+}
+.mockbox{position:relative;border-radius:32px;background:#F2F2F0;overflow:hidden;display:flex;align-items:center;justify-content:center;height:600px}
+.mockbox img{height:100%;width:auto;max-width:100%;object-fit:contain;display:block;mix-blend-mode:multiply;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.mockbox:hover img{transform:scale(1.04)}
+.mockchip{position:absolute;left:30px;bottom:26px;font-size:20px;font-weight:500;padding:11px 19px;border:1.5px solid #111111;border-radius:999px;background:#FFFFFF}
+.fgroup{margin-top:56px}
+.fgroup-h{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1.5px solid #111111}
+.fgroup-n{font-size:20px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888888}
+.fgroup-h h3{margin:0;font-size:30px;font-weight:900;letter-spacing:-0.02em}
+.fgroup-c{margin-left:auto;font-size:19px;color:#777777}
+.fgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;margin-top:28px}
+.fshot{background:none;border:0;padding:0;cursor:zoom-in;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;text-align:center}
+.fshot img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 2px 4px rgba(0,0,0,.05),0 14px 28px rgba(0,0,0,.09);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.fshot:hover img{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.14)}
+.fshot span{font-size:19px;font-weight:500;line-height:1.3}
+@media (max-width:900px){
+  .mockbox{height:320px}
+  .mockchip{font-size:16px;left:16px;bottom:16px}
+  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .fgroup-h h3{font-size:23px}
+  .fshot span{font-size:16px}
+}
+.fnote{font-family:'Kaushan Script',cursive;font-size:25px;color:#111111;opacity:0;transform:translateX(-10px) rotate(-3deg);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
+.fgroup:hover .fnote,.fgroup:focus-within .fnote{opacity:1;transform:translateX(0) rotate(-3deg)}
+.mocknote{position:absolute;right:38px;top:34px;font-family:'Kaushan Script',cursive;font-size:30px;color:#111111;transform:rotate(-5deg);opacity:0;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.mockbox:hover .mocknote{opacity:1;transform:rotate(-5deg) translateY(6px)}
+@media (hover:none){.fnote,.mocknote{opacity:1;transform:none}}
+@media (max-width:900px){.fnote{font-size:20px;white-space:normal}.mocknote{font-size:22px;right:16px;top:16px}}
+
+.pill-short{display:none}
+@media (max-width:560px){
+  header nav{flex-wrap:nowrap !important;gap:10px !important;padding:12px 16px !important}
+  header nav > div{gap:14px !important;min-width:0}
+  header nav > div > a{font-size:20px !important;white-space:nowrap}
+  .nav-links{display:flex !important;gap:14px !important;font-size:15px !important}
+  .pill-long{display:none}
+  .pill-short{display:inline}
+  .pill{font-size:14px !important;padding:10px 14px !important;flex-shrink:0;white-space:nowrap}
+  .pill svg{width:15px;height:15px}
+}
+@media (max-width:560px){
+  .nshots{position:static !important;display:flex;overflow-x:auto;gap:14px;padding:20px 16px;align-items:flex-start;-webkit-overflow-scrolling:touch}
+  .nshot{width:150px;margin-top:0 !important;animation:none !important}
+  .nstage{height:auto !important;overflow:visible}
+  .jshot{max-width:150px;margin-top:0 !important;animation:none !important}
+  .hn{display:none}
+  .ghost{display:none !important}
+}
+</style>
+<style>#lb-root{position:fixed;inset:0;z-index:60}#lb-root[hidden]{display:none !important}</style>
+</head>
+<body>
+
+
+<div style="font-family: 'Roboto', system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%">
+  <div class="prog" aria-hidden="true"></div>
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid #E8E8E8">
+    <nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 40px">
+        <a href="index.html" style="font-family: 'Kaushan Script', cursive; font-size: 32px; text-decoration: none; color: #111111">Sai Tejaswi</a>
+        <div class="nav-links" style="display: flex; gap: 32px; font-weight: 500; font-size: 20px"><a class="lnk" href="index.html">Work</a></div>
+      </div>
+      <button type="button" data-copy class="pill" aria-label="Copy email address" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 20px; padding: 12px 22px; border: 0; border-radius: 999px; background: #111111; color: #FFFFFF; cursor: pointer; min-height: 44px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+        <span class="pill-long"><span data-b="navLabel">muthukurisaitejaswi@gmail.com</span></span><span class="pill-short">Email me</span>
+      </button>
+    </nav>
+  </header>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 48px">
+    <a href="index.html#work" class="back lnk" style="display: inline-flex; gap: 8px; align-items: center; font-weight: 500; font-size: 20px; margin-bottom: 40px"><span class="arrow" aria-hidden="true">←</span> All work</a>
+    <div class="split" style="display: flex; gap: 56px; align-items: flex-end; justify-content: space-between">
+      <div style="flex: 1 1 55%">
+        <div class="lbl">Practice project · Online course</div>
+        <h1 class="title" style="margin: 10px 0 0; font-size: 80px; font-weight: 900; letter-spacing: -0.045em; line-height: .98">Food delivery app</h1>
+      </div>
+      <p style="flex: 1 1 45%; margin: 0; font-size: 24px; line-height: 1.5; color: #333333">My first step into UI design — a Figma course project where I added my own colours, type and components.</p>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section aria-label="At a glance" style="max-width: 1200px; margin: 0 auto; padding: 8px 24px 56px">
+    <div class="stats"><div class="stat-i"><div class="stat-v">20</div><div class="stat-l">connected screens</div></div><div class="stat-i"><div class="stat-v">5</div><div class="stat-l">flows, from onboarding to profile</div></div><div class="stat-i"><div class="stat-v">1</div><div class="stat-l">style guide with my own colours and type</div></div><div class="stat-i"><div class="stat-v">Figma</div><div class="stat-l">interactive prototype</div></div></div>
+  </section>
+
+  <!-- HERO MOCKUP -->
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 0 24px">
+    <div class="mockbox">
+      <img src="images/b344a2bb6bdd981156d0dcb5bd81c038.webp" alt="Two phone mockups showing the food delivery app onboarding screens">
+      <span class="mockchip">20 screens · 5 flows · Figma prototype</span>
+      <span class="mocknote" aria-hidden="true">where it all began ✎</span>
+    </div>
+  </section>
+
+  <!-- ALL SCREENS -->
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px 24px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 14px">
+      <h2 style="margin: 0; font-size: 52px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.05">Every screen, by flow.</h2>
+      <p class="lbl" style="margin: 0">Tap any screen to see it larger</p>
+    </div>
+    
+      <div class="fgroup">
+        <div class="fgroup-h"><span class="fgroup-n">Flow 01</span><h3>Onboarding</h3><span class="fnote" aria-hidden="true">three screens, then let them in ✎</span><span class="fgroup-c">4 screens</span></div>
+        <div class="fgrid">
+          
+            <button type="button" class="fshot" data-lb="0" aria-label="Enlarge: Welcome"><img src="images/e6e5153a530f730c39ebaaf1290e04ae.webp" alt="Welcome"><span>Welcome</span></button>
+          
+            <button type="button" class="fshot" data-lb="1" aria-label="Enlarge: Onboarding 1"><img src="images/6b39f44a9be27e4abdb41ca9cb42d25b.webp" alt="Onboarding 1" loading="lazy" decoding="async"><span>Onboarding 1</span></button>
+          
+            <button type="button" class="fshot" data-lb="2" aria-label="Enlarge: Onboarding 2"><img src="images/a53ff03946a76bd4b9e659c3c593324e.webp" alt="Onboarding 2" loading="lazy" decoding="async"><span>Onboarding 2</span></button>
+          
+            <button type="button" class="fshot" data-lb="3" aria-label="Enlarge: Onboarding 3"><img src="images/2bc1e353fb4cbc065c722ee297a91390.webp" alt="Onboarding 3" loading="lazy" decoding="async"><span>Onboarding 3</span></button>
+          
+        </div>
+      </div>
+    
+      <div class="fgroup">
+        <div class="fgroup-h"><span class="fgroup-n">Flow 02</span><h3>Sign in &amp; account recovery</h3><span class="fnote" aria-hidden="true">every dead end has a way out ✎</span><span class="fgroup-c">7 screens</span></div>
+        <div class="fgrid">
+          
+            <button type="button" class="fshot" data-lb="4" aria-label="Enlarge: Sign in"><img src="images/a7574485af6631d79771eaa5afa149b6.webp" alt="Sign in" loading="lazy" decoding="async"><span>Sign in</span></button>
+          
+            <button type="button" class="fshot" data-lb="5" aria-label="Enlarge: Sign up"><img src="images/d515b9b7322ce791a6eb45f462c8b5b4.webp" alt="Sign up" loading="lazy" decoding="async"><span>Sign up</span></button>
+          
+            <button type="button" class="fshot" data-lb="6" aria-label="Enlarge: Forgot password"><img src="images/02bfe4cbb4ecb00cab03d15716d4a7f7.webp" alt="Forgot password" loading="lazy" decoding="async"><span>Forgot password</span></button>
+          
+            <button type="button" class="fshot" data-lb="7" aria-label="Enlarge: Code sent"><img src="images/9a06a0c98166c82fea0f2ef8ef39bd85.webp" alt="Code sent" loading="lazy" decoding="async"><span>Code sent</span></button>
+          
+            <button type="button" class="fshot" data-lb="8" aria-label="Enlarge: New password"><img src="images/fe79bca93c7cd93b248a655c3c8af360.webp" alt="New password" loading="lazy" decoding="async"><span>New password</span></button>
+          
+            <button type="button" class="fshot" data-lb="9" aria-label="Enlarge: Verify phone"><img src="images/40c14625a48d19f9017dba79a1feba7a.webp" alt="Verify phone" loading="lazy" decoding="async"><span>Verify phone</span></button>
+          
+            <button type="button" class="fshot" data-lb="10" aria-label="Enlarge: Enter code"><img src="images/c84434fe748b7d26b7920ec01e43555c.webp" alt="Enter code" loading="lazy" decoding="async"><span>Enter code</span></button>
+          
+        </div>
+      </div>
+    
+      <div class="fgroup">
+        <div class="fgroup-h"><span class="fgroup-n">Flow 03</span><h3>Order history</h3><span class="fnote" aria-hidden="true">date first — that’s what people scan ✎</span><span class="fgroup-c">3 screens</span></div>
+        <div class="fgrid">
+          
+            <button type="button" class="fshot" data-lb="11" aria-label="Enlarge: Orders"><img src="images/32c781aaca24c58f618469c183a1c94c.webp" alt="Orders" loading="lazy" decoding="async"><span>Orders</span></button>
+          
+            <button type="button" class="fshot" data-lb="12" aria-label="Enlarge: Orders · view 2"><img src="images/1e191ad7c51a8be128d19ba7f229a74f.webp" alt="Orders · view 2" loading="lazy" decoding="async"><span>Orders · view 2</span></button>
+          
+            <button type="button" class="fshot" data-lb="13" aria-label="Enlarge: Orders · view 3"><img src="images/69f666d36f5514451d30faa0c2cd83d0.webp" alt="Orders · view 3" loading="lazy" decoding="async"><span>Orders · view 3</span></button>
+          
+        </div>
+      </div>
+    
+      <div class="fgroup">
+        <div class="fgroup-h"><span class="fgroup-n">Flow 04</span><h3>Payment &amp; addresses</h3><span class="fnote" aria-hidden="true">familiar icons, fewer doubts ✎</span><span class="fgroup-c">4 screens</span></div>
+        <div class="fgrid">
+          
+            <button type="button" class="fshot" data-lb="14" aria-label="Enlarge: Payment method"><img src="images/950343ef114bfa948cce90b6dee151d7.webp" alt="Payment method" loading="lazy" decoding="async"><span>Payment method</span></button>
+          
+            <button type="button" class="fshot" data-lb="15" aria-label="Enlarge: Add new card"><img src="images/9033dba82e856232d6a213543a82b7aa.webp" alt="Add new card" loading="lazy" decoding="async"><span>Add new card</span></button>
+          
+            <button type="button" class="fshot" data-lb="16" aria-label="Enlarge: My address"><img src="images/92376ef8e013e06a87c91ecca905a2ac.webp" alt="My address" loading="lazy" decoding="async"><span>My address</span></button>
+          
+            <button type="button" class="fshot" data-lb="17" aria-label="Enlarge: My location"><img src="images/fe14180e6b07c4fb108d5f1b76248e5a.webp" alt="My location" loading="lazy" decoding="async"><span>My location</span></button>
+          
+        </div>
+      </div>
+    
+      <div class="fgroup">
+        <div class="fgroup-h"><span class="fgroup-n">Flow 05</span><h3>Profile</h3><span class="fnote" aria-hidden="true">one place for everything account ✎</span><span class="fgroup-c">2 screens</span></div>
+        <div class="fgrid">
+          
+            <button type="button" class="fshot" data-lb="18" aria-label="Enlarge: Profile"><img src="images/8612211041417c9eade5a0dd948f7766.webp" alt="Profile" loading="lazy" decoding="async"><span>Profile</span></button>
+          
+            <button type="button" class="fshot" data-lb="19" aria-label="Enlarge: Edit profile"><img src="images/f8b8117726c132a0de37f6c335b45046.webp" alt="Edit profile" loading="lazy" decoding="async"><span>Edit profile</span></button>
+          
+        </div>
+      </div>
+    
+  </section>
+
+  <section class="rise" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 100px">
+    <div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1.5px solid #111111">
+      <div style="padding: 28px 32px 28px 0; border-right: 1px solid #E8E8E8"><h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 700">What I practised</h3><p class="cbody" style="margin: 0; line-height: 1.6; color: #333333">A style guide first, reusable components next, then a prototype linking every screen.</p></div>
+      <div style="padding: 28px 32px; border-right: 1px solid #E8E8E8"><h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 700">Flows covered</h3><p class="cbody" style="margin: 0; line-height: 1.6; color: #333333">Onboarding, sign in and recovery, order history, payment and addresses, profile.</p></div>
+      <div style="padding: 28px 0 28px 32px"><h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 700">What it taught me</h3><p class="cbody" style="margin: 0; line-height: 1.6; color: #333333">How screens connect into flows, and how components keep a whole app consistent.</p></div>
+    </div>
+  </section>
+
+  <a href="tiny-treasures.html" class="cta nx" style="display: block; background: #0E0E0E; color: #FFFFFF; text-decoration: none">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 100px 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px">
+      <div><div class="lbl" style="color: #BBBBBB">Next project</div><div class="h2" style="font-size: 80px; font-weight: 900; letter-spacing: -0.04em; margin-top: 10px">Tiny Treasures</div></div>
+      <span style="font-size: 64px" aria-hidden="true"><span class="arrow">→</span></span>
+    </div>
+  </a>
+
+
+  <!-- LIGHTBOX -->
+  
+</div>
+
+<div id="lb-root" hidden>
+    <div class="lb" role="dialog" aria-modal="true" aria-label="<span data-b="lbLabel">Welcome</span>" style="position: fixed; inset: 0; z-index: 50; background: rgba(10,10,10,.94); display: flex; align-items: center; justify-content: center; gap: 32px; padding: 24px">
+      <button type="button" class="lbbtn" data-lbprev aria-label="Previous screen" style="width: 56px; height: 56px; border-radius: 50%; border: 1.5px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 24px; cursor: pointer">←</button>
+      <figure style="margin: 0; display: flex; flex-direction: column; align-items: center; gap: 16px">
+        <img src="images/e6e5153a530f730c39ebaaf1290e04ae.webp" data-b-src="lb" alt="<span data-b="lbLabel" loading="lazy" decoding="async">Welcome</span>" style="height: min(80vh, 760px); width: auto">
+        <figcaption style="color: #FFFFFF; font-size: 22px; font-weight: 500"><span data-b="lbLabel">Welcome</span> <span style="color: #888888">· <span data-b="lbPos">1 / 20</span></span></figcaption>
+      </figure>
+      <button type="button" class="lbbtn" data-lbnext aria-label="Next screen" style="width: 56px; height: 56px; border-radius: 50%; border: 1.5px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 24px; cursor: pointer">→</button>
+      <button type="button" class="lbbtn" data-lbclose aria-label="Close" style="position: absolute; top: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 22px; cursor: pointer">✕</button>
+    </div>
+  </div>
+<script>window.PAGE={"demo":[],"arts":[],"lb":[{"src":"images/e6e5153a530f730c39ebaaf1290e04ae.webp","label":"Welcome"},{"src":"images/6b39f44a9be27e4abdb41ca9cb42d25b.webp","label":"Onboarding 1"},{"src":"images/a53ff03946a76bd4b9e659c3c593324e.webp","label":"Onboarding 2"},{"src":"images/2bc1e353fb4cbc065c722ee297a91390.webp","label":"Onboarding 3"},{"src":"images/a7574485af6631d79771eaa5afa149b6.webp","label":"Sign in"},{"src":"images/d515b9b7322ce791a6eb45f462c8b5b4.webp","label":"Sign up"},{"src":"images/02bfe4cbb4ecb00cab03d15716d4a7f7.webp","label":"Forgot password"},{"src":"images/9a06a0c98166c82fea0f2ef8ef39bd85.webp","label":"Code sent"},{"src":"images/fe79bca93c7cd93b248a655c3c8af360.webp","label":"New password"},{"src":"images/40c14625a48d19f9017dba79a1feba7a.webp","label":"Verify phone"},{"src":"images/c84434fe748b7d26b7920ec01e43555c.webp","label":"Enter code"},{"src":"images/32c781aaca24c58f618469c183a1c94c.webp","label":"Orders"},{"src":"images/1e191ad7c51a8be128d19ba7f229a74f.webp","label":"Orders · view 2"},{"src":"images/69f666d36f5514451d30faa0c2cd83d0.webp","label":"Orders · view 3"},{"src":"images/950343ef114bfa948cce90b6dee151d7.webp","label":"Payment method"},{"src":"images/9033dba82e856232d6a213543a82b7aa.webp","label":"Add new card"},{"src":"images/92376ef8e013e06a87c91ecca905a2ac.webp","label":"My address"},{"src":"images/fe14180e6b07c4fb108d5f1b76248e5a.webp","label":"My location"},{"src":"images/8612211041417c9eade5a0dd948f7766.webp","label":"Profile"},{"src":"images/f8b8117726c132a0de37f6c335b45046.webp","label":"Edit profile"}],"email":"muthukurisaitejaswi@gmail.com"};</script>
+<script src="site.js"></script>
+</body>
+</html>
