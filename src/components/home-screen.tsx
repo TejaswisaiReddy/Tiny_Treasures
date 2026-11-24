@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { SafeImage } from "@/components/safe-image";
+import { EmptyState } from "@/components/empty-state";
 import { ProductCard } from "@/components/product-card";
 import { useFavorites } from "@/components/favorites-provider";
 import { BottomNavigation } from "@/components/bottom-navigation";
@@ -50,16 +52,31 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
   }
   function reset() { setQuery(""); setCategory("All"); setSavedOnly(false); setSort("recent"); setFilters(emptyFilters()); router.replace("/", { scroll: false }); }
   function focusSearch() { window.scrollTo({ top: 0 }); searchRef.current?.focus({ preventScroll: true }); }
-  function productSection(title: string, products: Product[], id: string) {
-    const visible = filtered(products);
+  const seasonalVisible = filtered(seasonalProducts);
+  const recentVisible = filtered(recentProducts);
+  const hasListings = seasonalProducts.length + recentProducts.length > 0;
+  const nothingMatches = hasListings && !seasonalVisible.length && !recentVisible.length;
+  // Explain why the list is empty, and offer the one action that brings items back.
+  function noMatches() {
+    const clear = <button type="button" onClick={reset} className="min-h-11 rounded-xl bg-brand px-5 text-sm font-medium text-white hover:bg-brand/90">{query ? "Clear search" : "Show all items"}</button>;
+    if (query) return <EmptyState title={`No results for “${query.trim()}”`} message="Try a different word, or check the spelling." action={clear} />;
+    if (savedOnly) return <EmptyState title="No saved favorites yet" message="Tap the heart on any item to save it here." action={clear} />;
+    if (category !== "All") return <EmptyState title={`No ${category.toLowerCase()} yet`} message="New treasures are added all the time. Check back soon." action={clear} />;
+    return <EmptyState title="No items match your filters" message="Try removing a filter or two." action={clear} />;
+  }
+  function productSection(title: string, products: Product[], visible: Product[], id: string) {
     return <section id={id} aria-labelledby={`${id}-heading`} className="pt-2">
       <h2 id={`${id}-heading`} className="mb-4 text-xl font-medium">{title}</h2>
-      {visible.length ? <div className="grid grid-cols-2 gap-x-3 gap-y-4">{visible.map(product => <ProductCard key={product.id} product={product} saved={favorites.includes(product.id)} onToggle={() => toggleFavorite(product.id)} returnTo={returnTo} />)}</div> : <div className="rounded-xl bg-gray-50 px-5 py-8 text-center text-sm text-gray-600"><p>No matching items in this collection.</p><button onClick={reset} className="mt-3 font-medium text-brand underline">Clear filters</button></div>}
+      {visible.length
+        ? <div className="grid grid-cols-2 gap-x-3 gap-y-4">{visible.map(product => <ProductCard key={product.id} product={product} saved={favorites.includes(product.id)} onToggle={() => toggleFavorite(product.id)} returnTo={returnTo} />)}</div>
+        : products.length
+          ? <EmptyState compact title="Nothing here matches" message="Other collections may still have items for you." />
+          : <EmptyState compact title="No items yet" message="New treasures will appear here soon." />}
     </section>;
   }
 
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:block focus:p-3">Skip to content</a>
       <header className="flex h-16 items-center justify-between border-b border-gray-200 px-3">
         <button aria-label="Open menu" aria-expanded={menuOpen} aria-controls="home-menu" onClick={() => setMenuOpen(!menuOpen)} className="flex size-11 shrink-0 items-center justify-center rounded-full hover:bg-gray-50"><Icon name="menu" size={18} /></button>
@@ -81,18 +98,22 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
         {filtersOpen && <div id="product-filters" className="space-y-4 rounded-xl border border-gray-200 p-4 text-sm"><label className="flex items-center justify-between gap-2">Sort by<select value={sort} onChange={event => setSort(event.target.value)} className="rounded-lg border border-gray-200 p-2"><option value="recent">Recently posted</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></label><label className="flex items-center gap-2"><input type="checkbox" checked={savedOnly} onChange={event => setSavedOnly(event.target.checked)} className="accent-brand" />Saved favorites only</label><button onClick={reset} className="text-brand underline">Reset filters</button></div>}
 
         <section aria-label="Autumn collection" className="relative flex h-44 items-center overflow-hidden rounded-xl bg-brand">
-          <Image src="/images/autumn.png" alt="Folded autumn knitwear" fill priority sizes="380px" className="object-cover opacity-60" />
+          <SafeImage src="/images/autumn.png" alt="Folded autumn knitwear" fill priority sizes="(max-width: 430px) calc(100vw - 32px), 398px" imageClassName="object-cover opacity-60" fallbackClassName="bg-brand text-white/40" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand to-transparent" />
           <div className="relative px-6 text-white"><h2 className="mb-1 text-2xl font-medium">NEW ARRIVALS</h2><p className="mb-3 text-base font-medium leading-[19px]">Autumn Collection<br />is here.</p><a href="#seasonal" onClick={reset} className="inline-flex min-h-9 items-center rounded-full bg-white px-6 py-2 text-base leading-[19px] text-brand hover:bg-fuchsia-50">Shop Now</a></div>
         </section>
 
         <section aria-labelledby="category-heading" className="pt-2">
           <div className="mb-4 flex items-center justify-between gap-2"><h2 id="category-heading" className="text-[clamp(20px,5.8vw,24px)] font-medium">Browse by Category</h2><Link href={filtersLink} className="flex min-h-11 shrink-0 items-center text-base text-brand">View All</Link></div>
-          <div className="category-scroll flex gap-0 overflow-x-auto pb-2">{categories.map(item => <button key={item.name} aria-pressed={category === item.name} onClick={() => { if (item.name === "More") { router.push(filtersLink); return; } setCategory(category === item.name ? "All" : item.name); setFilters(current => ({ ...current, categories: [] })); }} className="flex w-[103px] shrink-0 flex-col items-center gap-2 pb-2 text-base font-medium"><Image src={`/images/${item.image}.png`} alt="" width={80} height={80} className={`size-20 rounded-xl object-cover ${category === item.name ? "ring-2 ring-brand ring-offset-2" : ""}`} /><span>{item.name}</span></button>)}</div>
+          {categories.length ? <div className="category-scroll flex gap-0 overflow-x-auto pb-2">{categories.map(item => <button key={item.name} aria-pressed={category === item.name} onClick={() => { if (item.name === "More") { router.push(filtersLink); return; } setCategory(category === item.name ? "All" : item.name); setFilters(current => ({ ...current, categories: [] })); }} className="flex w-[103px] shrink-0 flex-col items-center gap-2 pb-2 text-base font-medium"><SafeImage src={`/images/${item.image}.png`} alt="" width={80} height={80} sizes="80px" className={`size-20 rounded-xl ${category === item.name ? "ring-2 ring-brand ring-offset-2" : ""}`} /><span>{item.name}</span></button>)}</div> : <EmptyState compact title="No categories yet" message="Categories will appear here soon." />}
         </section>
         {(category !== "All" || savedOnly || query) && <p role="status" className="text-sm text-gray-600">{savedOnly ? "Saved favorites" : category !== "All" ? category : "Search results"}{query && ` for “${query}”`}<button onClick={reset} className="ml-3 text-brand underline">Clear</button></p>}
-        {productSection("Seasonal Clothing", seasonalProducts, "seasonal")}
-        {productSection("Recently posted", recentProducts, "recent")}
+        {nothingMatches
+          ? <section aria-label="Search results" id="seasonal">{noMatches()}</section>
+          : <>
+            {productSection("Seasonal Clothing", seasonalProducts, seasonalVisible, "seasonal")}
+            {productSection("Recently posted", recentProducts, recentVisible, "recent")}
+          </>}
       </main>
 
       {notice && <div role="status" className="fixed bottom-24 left-1/2 z-30 flex w-[calc(100%-32px)] max-w-[380px] -translate-x-1/2 items-center gap-3 rounded-xl border border-fuchsia-100 bg-white p-4 text-sm shadow-lg"><p className="flex-1">{notice}</p><button onClick={() => setNotice("")} className="min-h-11 text-brand">Dismiss</button></div>}

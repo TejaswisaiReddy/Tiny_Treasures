@@ -8,6 +8,15 @@
 }
 
 body { margin: 0; background: #f6f4f6; color: #1c1b1f; font-family: var(--font-roboto), Arial, sans-serif; }
+/* On wider screens the 430px app column sits on a soft branded backdrop so it reads as an intentional phone-sized layout. */
+@media (min-width: 640px) {
+  body { background: radial-gradient(circle at 15% 10%, #fbeefb 0, transparent 45%), radial-gradient(circle at 85% 90%, #e6f7fb 0, transparent 45%), #f4eff5; background-attachment: fixed; }
+}
+
+/* SafeImage loading placeholder. */
+.safe-image-shimmer { background: linear-gradient(100deg, #f1eef2 20%, #faf8fa 40%, #f1eef2 60%) 0 0 / 200% 100%; animation: safe-image-shimmer 1.4s ease-in-out infinite; }
+@keyframes safe-image-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .safe-image-shimmer { animation: none; } }
 button, a, input, select { -webkit-tap-highlight-color: transparent; }
 button, a { touch-action: manipulation; }
 button { cursor: pointer; }

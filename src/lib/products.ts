@@ -2,7 +2,8 @@ export type Product = {
   id: string;
   name: string;
   price: number;
-  image: string;
+  /** File name (without extension) in /public/images/products. Omit until a real photo exists. */
+  image?: string;
   category: string;
   ageGroup?: string;
   brand?: string;
@@ -20,13 +21,19 @@ export const seasonalProducts: Product[] = [
   { ...details, id: "pink-2", name: "Pink Puffer Jacket", price: 24, image: "pink-jacket" },
 ];
 export const recentProducts: Product[] = [
-  { id: "hm-jumpsuit", name: "H&M Jumpsuit", price: 15, image: "cart/jumpsuit", category: "Clothing", size: "92", ageGroup: "1–2Y", brand: "H&M", condition: "Excellent", location: "Tampere", rating: "4.9", shortDescription: "Size: 92 (18–24M)" },
-  { id: "yellow-raincoat", name: "Yellow Raincoat", price: 22.5, image: "cart/yellow-raincoat", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Size: 104 (3–4Y)" },
-  { id: "wooden-blocks", name: "Wooden Blocks Set", price: 12, image: "cart/wooden-blocks", category: "Toys", size: "One size", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Eco-friendly Wood" },
+  { id: "hm-jumpsuit", name: "H&M Jumpsuit", price: 15, image: "jumpsuit", category: "Clothing", size: "92", ageGroup: "1–2Y", brand: "H&M", condition: "Excellent", location: "Tampere", rating: "4.9", shortDescription: "Size: 92 (18–24M)" },
+  { id: "yellow-raincoat", name: "Yellow Raincoat", price: 22.5, image: "yellow-raincoat", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Size: 104 (3–4Y)" },
+  { id: "wooden-blocks", name: "Wooden Blocks Set", price: 12, image: "wooden-blocks", category: "Toys", size: "One size", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Eco-friendly Wood" },
   { ...details, id: "winter-1", name: "Winter jacket", price: 30, image: "winter-jacket" },
-  { ...details, id: "rain-1", name: "Rain Jacket", price: 15, image: "pink-jacket" },
-  { ...details, id: "rain-2", name: "Rain Jacket", price: 15, image: "pink-jacket" },
+  // No photos yet for the rain jackets: they show the image fallback until real photos are added.
+  { ...details, id: "rain-1", name: "Rain Jacket", price: 15 },
+  { ...details, id: "rain-2", name: "Rain Jacket", price: 15 },
 ];
+
+/** Public path of a product's photo, or undefined when it has none (SafeImage then shows its fallback). */
+export function productImageSrc(product: Pick<Product, "image">): string | undefined {
+  return product.image ? `/images/products/${product.image}.png` : undefined;
+}
 
 export const allProducts = [...seasonalProducts, ...recentProducts];
 

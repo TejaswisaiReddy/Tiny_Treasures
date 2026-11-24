@@ -43,7 +43,7 @@ export default function BatchCaptureScreen() {
   }
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-[412px] flex-col bg-white shadow-sm">
+    <main className="mx-auto flex min-h-dvh w-full max-w-[430px] flex-col bg-white shadow-sm">
       <header className="grid h-16 shrink-0 grid-cols-[52px_1fr_64px] items-center gap-2 px-3">
         <Link href="/sell" aria-label="Cancel photo capture" className="flex size-11 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200"><Image src="/images/sell/close.svg" alt="" width={14} height={14} /></Link>
         <div className="min-w-0 text-center"><h1 className="navigation text-xs font-semibold tracking-[0.14em] text-brand">BATCH CAPTURE</h1><p className="mt-1 text-xs text-gray-500">{photos.length} of 5 photos ready</p></div>

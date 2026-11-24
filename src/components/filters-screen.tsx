@@ -50,7 +50,7 @@ export default function FiltersScreen({ initialFilters, query }: FiltersScreenPr
   }
 
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <header className="sticky top-0 z-20 grid h-16 grid-cols-[1fr_auto_1fr] items-center border-b border-gray-200 bg-white px-4">
         <Link href={filterHref("/", initialFilters, query)} aria-label="Back without applying changes" className="flex size-11 items-center justify-center rounded-full hover:bg-gray-50">
           <Image src="/images/back.svg" alt="" width={24} height={24} />
@@ -105,7 +105,7 @@ export default function FiltersScreen({ initialFilters, query }: FiltersScreenPr
           <p role="status" className="sr-only">{message}</p>
         </main>
 
-        <footer className="fixed bottom-0 left-1/2 z-20 w-full max-w-[412px] -translate-x-1/2 bg-white px-4 pt-2 pb-[calc(21px+env(safe-area-inset-bottom))]">
+        <footer className="fixed bottom-0 left-1/2 z-20 w-full max-w-[430px] -translate-x-1/2 bg-white px-4 pt-2 pb-[calc(21px+env(safe-area-inset-bottom))]">
           <button type="submit" disabled={Boolean(priceError)} className="h-[60px] w-full rounded-xl bg-brand text-2xl font-medium text-white shadow-sm transition-colors hover:bg-[#7a127c] disabled:cursor-not-allowed disabled:opacity-50">Apply filters</button>
         </footer>
       </form>

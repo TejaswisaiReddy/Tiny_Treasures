@@ -5,6 +5,7 @@ import { FavoritesProvider } from "@/components/favorites-provider";
 import { ChatProvider } from "@/components/chat-provider";
 import { CartProvider } from "@/components/cart-provider";
 import { OrderPreviewProvider } from "@/components/order-preview-provider";
+import { BrokenImageGuard } from "@/components/broken-image-guard";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 const logo = Kaushan_Script({ weight: "400", subsets: ["latin"], variable: "--font-logo" });
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en" className={`${roboto.variable} ${logo.variable} ${jakarta.variable}`}><body><FavoritesProvider><ChatProvider><CartProvider><OrderPreviewProvider>{children}</OrderPreviewProvider></CartProvider></ChatProvider></FavoritesProvider></body></html>;
+  return <html lang="en" className={`${roboto.variable} ${logo.variable} ${jakarta.variable}`}><body><BrokenImageGuard /><FavoritesProvider><ChatProvider><CartProvider><OrderPreviewProvider>{children}</OrderPreviewProvider></CartProvider></ChatProvider></FavoritesProvider></body></html>;
 }

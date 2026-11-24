@@ -21,7 +21,7 @@ export default function CartScreen() {
   const titles = { info: "About your demo cart", Sell: "Sell an item", Profile: "Your profile" };
 
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <a href="#cart-content" className="sr-only focus:not-sr-only focus:block focus:p-3">Skip to cart</a>
       <header className="sticky top-0 z-20 grid h-16 grid-cols-[1fr_1.5fr_auto] items-center border-b border-gray-200 bg-white px-3">
         <Link href="/" aria-label="Back to shopping" className="flex size-11 items-center justify-center rounded-full hover:bg-gray-50"><Image src="/images/cart/back.svg" alt="" width={32} height={32} className="size-8" /></Link>

@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Product } from "@/lib/products";
+import { SafeImage } from "@/components/safe-image";
+import { productImageSrc, type Product } from "@/lib/products";
 
 export function ProductCard({ product, saved, onToggle, returnTo = "/" }: { product: Product; saved: boolean; onToggle: () => void; returnTo?: string }) {
   return (
     <article className="relative min-w-0">
       <Link href={`/items/${product.id}?from=${encodeURIComponent(returnTo)}`} aria-label={`View ${product.name}`} className="block rounded-xl">
       <div className="relative aspect-[184/192] overflow-hidden rounded-xl bg-stone-100">
-        <Image src={`/images/${product.image}.png`} alt={product.name} fill sizes="(max-width: 412px) 46vw, 184px" className="object-cover" />
+        <SafeImage src={productImageSrc(product)} alt={product.name} fill sizes="(max-width: 430px) 46vw, 198px" />
       </div>
       <div className="space-y-1 p-2">
         <h3 className="text-base font-medium leading-[19px]">{product.name}</h3>
@@ -20,8 +21,8 @@ export function ProductCard({ product, saved, onToggle, returnTo = "/" }: { prod
         <div className="flex items-center gap-1 pt-1 text-gray-600">
           <Image src="/images/location.svg" alt="" width={8} height={10} />
           <span className="text-sm">{product.location}</span>
-          <Image src="/images/star.png" alt="Rating" width={8} height={10} />
-          <span className="text-[10px]">{product.rating}</span>
+          <Image src="/images/star.png" alt="" width={8} height={10} />
+          <span className="text-[10px]"><span className="sr-only">Seller rating </span>{product.rating}</span>
         </div>
       </div>
       </Link>

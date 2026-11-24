@@ -5,7 +5,7 @@ export const batchStorageKey = "tiny-treasures-batch-v1";
 export const sampleBatch: BatchListing[] = [
   { id: "sample-romper", sample: true, photo: { id: "romper", name: "H&M jumpsuit", src: "/images/item/hm-jumpsuit.png" }, draft: { title: "H&M Cotton Jumpsuit", price: "12", category: "Clothes", size: "86-92cm", brand: "H&M", color: "Navy", condition: "Excellent", description: "Soft cotton jumpsuit, gently worn. No visible stains or holes." } },
   { id: "sample-books", sample: true, photo: { id: "books", name: "Children’s books", src: "/images/books.png" }, draft: { title: "Toddler Books Bundle", price: "24.50", category: "Books", size: "", brand: "", color: "", condition: "Very Good", description: "A bundle of favourite stories. Clean pages with light wear to the covers." } },
-  { id: "sample-blocks", sample: true, photo: { id: "blocks", name: "Wooden blocks", src: "/images/cart/wooden-blocks.png" }, draft: { title: "Wooden Play Blocks", price: "18", category: "Toys", size: "", brand: "", color: "Natural wood", condition: "Good", description: "Wooden blocks with light surface marks from play. All pieces shown are included." } },
+  { id: "sample-blocks", sample: true, photo: { id: "blocks", name: "Wooden blocks", src: "/images/products/wooden-blocks.png" }, draft: { title: "Wooden Play Blocks", price: "18", category: "Toys", size: "", brand: "", color: "Natural wood", condition: "Good", description: "Wooden blocks with light surface marks from play. All pieces shown are included." } },
 ];
 
 // Drafts may be incomplete; validate required selling fields only when posting.

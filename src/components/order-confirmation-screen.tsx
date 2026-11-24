@@ -12,7 +12,7 @@ export default function OrderConfirmationScreen() {
   const totals = getCartTotals(order.items.map(({ product, quantity }) => ({ price: product.price, quantity })), order.delivery);
 
   return (
-    <div id="order-confirmation-export" className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div id="order-confirmation-export" className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <OrderHeader confirmation />
       <main className="flex min-h-[calc(100dvh-64px)] flex-col px-5 pt-10 pb-10">
         <section className="relative text-center" aria-labelledby="confirmation-title">

@@ -44,7 +44,7 @@ export default function ProfileScreen() {
     catch { setSaveError("Could not save. Your browser storage may be full or unavailable. Your changes are still here."); }
   }
 
-  return <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-[#faf9fb] shadow-sm">
+  return <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-[#faf9fb] shadow-sm">
     <header className="flex h-16 items-center justify-between bg-white px-4"><Link href="/" className="text-lg font-semibold text-brand">Tiny Treasures</Link><button type="button" aria-label="Notifications" onClick={() => setDialog("notifications")} className="flex size-11 items-center justify-center rounded-full hover:bg-purple-50"><Image src="/images/bell.svg" alt="" width={20} height={20} /></button></header>
     <main className="pb-24">
       <section aria-labelledby="profile-name" className="bg-gradient-to-b from-[#eee5f4] to-[#f7f2fa] px-6 pt-7 pb-10 text-center">

@@ -59,7 +59,7 @@ export default function ListingFlowScreen({ failed = false }: { failed?: boolean
     context.setDraft({ ...emptyListing }); context.setPhotos([]); router.push("/sell");
   }
 
-  return <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+  return <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
     <header className="grid h-16 grid-cols-[44px_1fr_44px] items-center bg-white px-3">
       <button type="button" onClick={failed ? () => router.push("/sell/preview") : edit} aria-label="Go back" className="flex size-11 items-center justify-center rounded-full hover:bg-gray-50"><Image src="/images/sell/back.svg" alt="" width={16} height={16} /></button>
       <h1 className="text-center text-xl font-medium text-brand">{failed ? "Tiny Treasures" : "Listing Preview"}</h1>

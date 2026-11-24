@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SafeImage } from "@/components/safe-image";
+import { productImageSrc } from "@/lib/products";
 import { CheckoutIcon } from "@/components/checkout-icon";
 import { OrderIcon } from "@/components/order-icon";
 import { formatCartPrice } from "@/lib/cart";
@@ -21,7 +22,7 @@ export function OrderItemCard({ item, compact = false }: { item: OrderItem; comp
   const { product, quantity } = item;
   return (
     <Link href={`/items/${product.id}`} className={`flex min-w-0 items-center gap-3 rounded-xl ${compact ? "py-2" : "border border-gray-100 p-3 hover:border-filter-border"}`}>
-      <Image src={`/images/${product.image}.png`} alt={product.name} width={compact ? 48 : 64} height={compact ? 48 : 64} className={`${compact ? "size-12" : "size-16"} shrink-0 rounded-lg bg-gray-100 object-cover`} />
+      <SafeImage src={productImageSrc(product)} alt={product.name} width={compact ? 48 : 64} height={compact ? 48 : 64} className={`${compact ? "size-12" : "size-16"} rounded-lg bg-gray-100`} />
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium leading-5 [overflow-wrap:anywhere]">{product.name}</p>
         <p className="mt-0.5 text-xs leading-4 text-gray-600">Size: {product.size} · Qty: {quantity}</p>

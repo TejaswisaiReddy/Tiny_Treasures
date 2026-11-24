@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { useChat, type ChatMessage } from "@/components/chat-provider";
+import { SafeImage } from "@/components/safe-image";
 import { ItemDialog } from "@/components/item-dialog";
-import type { ItemDetails, Seller } from "@/lib/products";
+import { productImageSrc, type ItemDetails, type Seller } from "@/lib/products";
 
 function ChatIcon({ name, size = 20 }: { name: string; size?: number }) {
   return <Image src={`/images/chat/${name}.svg`} alt="" width={size} height={size} className="shrink-0 object-contain" style={{ width: size, height: size }} />;
@@ -67,11 +68,11 @@ export default function ChatScreen({ item, seller }: { item: ItemDetails; seller
   const dialogTitles = { actions: "Conversation actions", call: `Call ${seller.name}`, info: "About this conversation", Sell: "Sell an item", Profile: "Your profile" };
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-[412px] flex-col overflow-hidden bg-white shadow-sm">
+    <div className="mx-auto flex h-dvh w-full max-w-[430px] flex-col overflow-hidden bg-white shadow-sm">
       <header className="flex min-h-16 shrink-0 items-center justify-between gap-1 border-b border-gray-200 bg-white px-2">
         <div className="flex min-w-0 items-center gap-2">
           <Link href="/" aria-label="Back to browsing" className="flex size-11 shrink-0 items-center justify-center rounded-full hover:bg-gray-50"><Image src="/images/item/back.svg" alt="" width={16} height={16} /></Link>
-          <Image src={seller.avatar} alt="" width={48} height={48} priority className="size-12 shrink-0 rounded-full border border-gray-200 object-cover" />
+          <SafeImage src={seller.avatar} alt="" width={48} height={48} priority className="size-12 rounded-full border border-gray-200" />
           <div className="min-w-0">
             <div className="flex items-center gap-1"><h1 className="truncate text-xl font-medium">{seller.name}</h1>{seller.verified && <Image src="/images/item/verified.svg" alt="Verified seller" width={22} height={21} />}</div>
             {seller.verified && <p className="whitespace-nowrap text-xs text-brand">Verified Parent</p>}
@@ -85,7 +86,7 @@ export default function ChatScreen({ item, seller }: { item: ItemDetails; seller
 
       <main ref={scrollRef} aria-label={`Conversation with ${seller.name}`} tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-4 pb-6">
         <section aria-label="Item being discussed" className="flex items-center gap-4 rounded-xl border border-gray-200 p-3">
-          <Image src={`/images/${product.image}.png`} alt={product.name} width={64} height={64} className="size-16 shrink-0 rounded-lg object-cover" />
+          <SafeImage src={productImageSrc(product)} alt={product.name} width={64} height={64} className="size-16 rounded-lg" />
           <div className="min-w-0 flex-1 text-sm"><h2 className="leading-5">{product.name}</h2><p className="text-brand">€{product.price.toFixed(2)}</p></div>
           <Link href={itemHref} aria-label={`View ${product.name}`} className="flex min-h-11 shrink-0 items-center justify-center rounded-xl bg-brand px-4 text-base text-white hover:bg-brand/90">View</Link>
         </section>

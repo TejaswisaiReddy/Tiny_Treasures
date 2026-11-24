@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SafeImage } from "@/components/safe-image";
+import { productImageSrc } from "@/lib/products";
 import type { CartItem } from "@/components/cart-provider";
 import { formatCartPrice, MAX_DEMO_QUANTITY } from "@/lib/cart";
 
@@ -13,7 +15,7 @@ export function CartItemCard({ product, quantity, onQuantityChange, onRemove }: 
   return (
     <article aria-label={product.name} className="relative flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-3 min-[380px]:gap-4 min-[380px]:p-4">
       <Link href={itemHref} aria-label={`View ${product.name}`} className="shrink-0 rounded-lg">
-        <Image src={`/images/${product.image}.png`} alt={product.name} width={96} height={96} className="size-[72px] rounded-lg object-cover min-[380px]:size-24" />
+        <SafeImage src={productImageSrc(product)} alt={product.name} width={96} height={96} className="size-[72px] rounded-lg min-[380px]:size-24" />
       </Link>
       <div className="min-w-0 flex-1">
         <h3 className="pr-8 text-base font-medium leading-5"><Link href={itemHref}>{product.name}</Link></h3>

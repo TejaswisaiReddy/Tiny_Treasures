@@ -23,7 +23,7 @@ export default function OrderTrackingScreen() {
   const dialogTitles = { call: "Call your courier", message: "Message your courier", profile: "Your profile" };
 
   return (
-    <div id="order-tracking-export" className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div id="order-tracking-export" className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <OrderHeader />
       <main className="pb-[calc(88px+env(safe-area-inset-bottom))]">
         {pickup ? (

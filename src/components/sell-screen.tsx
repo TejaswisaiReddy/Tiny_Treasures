@@ -73,7 +73,7 @@ export default function SellScreen() {
   }
 
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <a href="#sell-content" className="sr-only focus:not-sr-only focus:block focus:p-3">Skip to listing form</a>
       <header className="sticky top-0 z-20 grid h-16 grid-cols-[44px_1fr_44px] items-center border-b border-gray-200 bg-white px-3">
         <Link href="/" aria-label="Back to home" className="flex size-11 items-center justify-center rounded-full hover:bg-gray-50"><Image src="/images/sell/back.svg" alt="" width={16} height={16} className="size-4" /></Link>

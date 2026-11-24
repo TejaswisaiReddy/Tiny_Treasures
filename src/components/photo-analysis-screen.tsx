@@ -41,7 +41,7 @@ export default function PhotoAnalysisScreen() {
   }
 
   return (
-    <main className="mx-auto min-h-dvh w-full max-w-[412px] bg-white px-4 pt-6 pb-8 shadow-sm">
+    <main className="mx-auto min-h-dvh w-full max-w-[430px] bg-white px-4 pt-6 pb-8 shadow-sm">
       <div className="relative overflow-hidden rounded-xl bg-[#ead7c9]">
         <Image src={current.src} alt={current.name} width={640} height={800} unoptimized priority className="aspect-[4/5] w-full object-contain" />
         {!ready && !error && <div aria-hidden="true" className="pointer-events-none absolute inset-0 animate-pulse bg-gradient-to-b from-brand/5 via-transparent to-brand/10 motion-reduce:animate-none" />}

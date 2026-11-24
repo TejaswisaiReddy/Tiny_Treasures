@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,18 +8,20 @@ import { CartOrderSummary } from "@/components/cart-order-summary";
 import { CheckoutIcon } from "@/components/checkout-icon";
 import { CheckoutContactDialog, sampleCheckoutContact } from "@/components/checkout-contact-dialog";
 import { CheckoutPaymentMethods, paymentMethods, type PaymentMethod } from "@/components/checkout-payment-methods";
+import { SafeImage } from "@/components/safe-image";
 import { ItemDialog } from "@/components/item-dialog";
 import { useOrderPreview } from "@/components/order-preview-provider";
 import { formatCartPrice, getCartTotals, type DeliveryMethod } from "@/lib/cart";
+import { productImageSrc } from "@/lib/products";
 
 type CheckoutDialog = "info" | "contact" | "payment" | "terms" | "protection" | null;
 
 function CheckoutItem({ product, quantity }: CartItem) {
   // Use the design's thumbnail for its sample jumpsuit; other items keep their own image.
-  const photo = product.id === "hm-jumpsuit" ? "/images/checkout/jumpsuit.png" : `/images/${product.image}.png`;
+  const photo = product.id === "hm-jumpsuit" ? "/images/checkout/jumpsuit.png" : productImageSrc(product);
   return (
     <article className="flex items-center gap-4 rounded-xl border border-gray-200 p-4">
-      <Image src={photo} alt={product.name} width={80} height={80} className="size-20 shrink-0 rounded-xl bg-gray-100 object-cover" />
+      <SafeImage src={photo} alt={product.name} width={80} height={80} className="size-20 rounded-xl bg-gray-100" />
       <div className="min-w-0 flex-1 space-y-1">
         <p className="text-xs text-brand min-[380px]:text-sm">ITEM DETAILS</p>
         <h3 className="break-words text-xl font-medium leading-6">{product.name}</h3>
@@ -59,7 +60,7 @@ export default function CheckoutScreen() {
   }
 
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-[412px] bg-white shadow-sm">
+    <div className="mx-auto min-h-dvh w-full max-w-[430px] bg-white shadow-sm">
       <a href="#checkout-content" className="sr-only focus:not-sr-only focus:block focus:p-3">Skip to checkout</a>
       <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-3">
         <div className="flex items-center gap-2"><Link href="/cart" aria-label="Back to cart" className="flex size-11 items-center justify-center rounded-full hover:bg-gray-50"><CheckoutIcon name="back" /></Link><h1 className="navigation text-xl font-bold text-brand">Payment</h1></div>
@@ -120,7 +121,7 @@ export default function CheckoutScreen() {
         </>}
       </main>
 
-      <footer className="fixed bottom-0 left-1/2 z-20 w-full max-w-[412px] -translate-x-1/2 border-t border-gray-100 bg-white px-4 pt-4 pb-[calc(16px+env(safe-area-inset-bottom))]">
+      <footer className="fixed bottom-0 left-1/2 z-20 w-full max-w-[430px] -translate-x-1/2 border-t border-gray-100 bg-white px-4 pt-4 pb-[calc(16px+env(safe-area-inset-bottom))]">
         <button type="button" onClick={() => setDialog("payment")} disabled={!items.length} aria-describedby="payment-demo-notice" className="flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 text-xl font-medium text-white shadow-md hover:bg-brand/90 disabled:cursor-not-allowed disabled:opacity-40"><CheckoutIcon name="lock" />Preview payment</button>
         <p id="payment-demo-notice" className="mt-3 text-center text-xs leading-4 text-gray-600">Demo only — no payment will be taken.</p>
         <div className="flex flex-wrap items-center justify-center gap-x-2 text-xs text-brand"><button type="button" onClick={() => setDialog("terms")} className="min-h-8 rounded px-1 underline">Terms of Service</button><span aria-hidden="true">·</span><button type="button" onClick={() => setDialog("protection")} className="min-h-8 rounded px-1 underline">Buyer Protection</button></div>
