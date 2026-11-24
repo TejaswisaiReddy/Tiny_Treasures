@@ -15,7 +15,6 @@ export function ProductCard({ product, saved, onToggle, returnTo = "/" }: { prod
         <p className="text-base leading-[19px] text-brand">€{product.price.toFixed(2)}</p>
         <div className="flex items-center gap-1 pt-1 text-[10px] text-gray-600">
           <span className="rounded-full border border-cyan-200 bg-cyan-50 px-2 py-0.5">Size {product.size}</span>
-          <Image src="/images/dot.png" alt="" width={8} height={10} />
           <span>{product.condition}</span>
         </div>
         <div className="flex items-center gap-1 pt-1 text-gray-600">

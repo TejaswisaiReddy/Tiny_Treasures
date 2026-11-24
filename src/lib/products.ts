@@ -21,11 +21,11 @@ export const seasonalProducts: Product[] = [
 ];
 export const recentProducts: Product[] = [
   { id: "hm-jumpsuit", name: "Navy Baby Jumpsuit", price: 12, image: "jumpsuit.png", category: "Clothing", size: "92", ageGroup: "1–2Y", condition: "Good", location: "Tampere", rating: "4.9", shortDescription: "Dark navy long-sleeve one-piece with a button front and full-length legs." },
-  { id: "scooter", name: "Green Three-Wheel Kids' Scooter", price: 18, image: "scooter.jpg", category: "Toys", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Green three-wheel kick scooter with a wide deck and child-size hand grips." },
-  { id: "stroller", name: "Navy Stroller with Red Canopy", price: 30, image: "stroller.jpg", category: "Baby Gear", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Navy stroller with a red canopy, safety harness and under-seat basket." },
-  { id: "white-frock", name: "White Tulle Party Dress", price: 18, image: "white-frock.jpg", category: "Clothing", size: "110", ageGroup: "4–5Y", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "White sleeveless party dress with a gathered tulle skirt." },
+  { id: "scooter", name: "Scooter", price: 18, image: "scooter.jpg", category: "Toys", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Green three-wheel kick scooter with a wide deck and child-size hand grips." },
+  { id: "stroller", name: "ABC Stroller", price: 30, image: "stroller.jpg", category: "Baby Gear", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Navy stroller with a red canopy, safety harness and under-seat basket." },
+  { id: "white-frock", name: "White Party Dress", price: 18, image: "white-frock.jpg", category: "Clothing", size: "110", ageGroup: "4–5Y", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "White sleeveless party dress with a gathered tulle skirt." },
   { id: "wooden-blocks", name: "Wooden Alphabet Blocks", price: 8, image: "wooden-blocks.png", category: "Toys", size: "One size", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "Muted wooden alphabet and play blocks for early learning." },
-  { id: "yellow-raincoat", name: "Yellow Hooded Kids' Raincoat", price: 15, image: "yellow-raincoat.png", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Bright yellow hooded raincoat with a snap front and roomy patch pockets." },
+  { id: "yellow-raincoat", name: "Yellow Raincoat", price: 15, image: "yellow-raincoat.png", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Bright yellow hooded raincoat with a snap front and roomy patch pockets." },
 ];
 
 /** Public path of a product's photo, or undefined when it has none (SafeImage then shows its fallback). */
