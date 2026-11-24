@@ -10,7 +10,7 @@ import { ProductCard } from "@/components/product-card";
 import { useFavorites } from "@/components/favorites-provider";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { useCart } from "@/components/cart-provider";
-import { categoryProducts, recentProducts, seasonalProducts, type Product } from "@/lib/products";
+import { recentProducts, seasonalProducts, type Product } from "@/lib/products";
 import { activeFilterCount, emptyFilters, filterHref, matchesFilters, type ProductFilters } from "@/lib/product-filters";
 
 function Icon({ name, size = 20 }: { name: string; size?: number }) {
@@ -18,17 +18,16 @@ function Icon({ name, size = 20 }: { name: string; size?: number }) {
 }
 
 const categories = [
-  { name: "Puzzles", image: "puzzles" },
-  { name: "Books", image: "books" },
-  { name: "Soft toys", image: "soft-toys" },
-  { name: "More", image: "more" },
+  { name: "Puzzles", slug: "puzzles", image: "puzzles" },
+  { name: "Books", slug: "books", image: "books" },
+  { name: "Soft toys", slug: "soft-toys", image: "soft-toys" },
+  { name: "More", slug: "more", image: "more" },
 ];
 
 export default function HomeScreen({ initialFilters, initialQuery }: { initialFilters: ProductFilters; initialQuery: string }) {
   const router = useRouter();
   const [filters, setFilters] = useState(initialFilters);
   const [query, setQuery] = useState(initialQuery);
-  const [category, setCategory] = useState("All");
   const { favorites, toggleFavorite } = useFavorites();
   const { totals: cartTotals } = useCart();
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -38,31 +37,27 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
   const [notice, setNotice] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const filterCount = activeFilterCount(filters);
-  const browseFilters = category === "All" ? filters : { ...filters, categories: [category === "Soft toys" ? "Toys" : category] };
-  const filtersLink = filterHref("/filters", browseFilters, query);
-  const returnTo = filterHref("/", browseFilters, query);
+  const filtersLink = filterHref("/filters", filters, query);
+  const returnTo = filterHref("/", filters, query);
   function filtered(products: Product[]) {
     const result = products.filter(product =>
       `${product.name} ${product.category} ${product.location}`.toLowerCase().includes(query.toLowerCase().trim()) &&
-      (category === "All" || category === product.category) &&
       matchesFilters(product, filters) &&
       (!savedOnly || favorites.includes(product.id))
     );
     return sort === "low" ? result.sort((a, b) => a.price - b.price) : sort === "high" ? result.sort((a, b) => b.price - a.price) : result;
   }
-  function reset() { setQuery(""); setCategory("All"); setSavedOnly(false); setSort("recent"); setFilters(emptyFilters()); router.replace("/", { scroll: false }); }
+  function reset() { setQuery(""); setSavedOnly(false); setSort("recent"); setFilters(emptyFilters()); router.replace("/", { scroll: false }); }
   function focusSearch() { window.scrollTo({ top: 0 }); searchRef.current?.focus({ preventScroll: true }); }
   const seasonalVisible = filtered(seasonalProducts);
   const recentVisible = filtered(recentProducts);
-  const categoryVisible = filtered(categoryProducts);
-  const hasListings = seasonalProducts.length + recentProducts.length + categoryProducts.length > 0;
-  const nothingMatches = hasListings && !seasonalVisible.length && !recentVisible.length && !categoryVisible.length;
+  const hasListings = seasonalProducts.length + recentProducts.length > 0;
+  const nothingMatches = hasListings && !seasonalVisible.length && !recentVisible.length;
   // Explain why the list is empty, and offer the one action that brings items back.
   function noMatches() {
     const clear = <button type="button" onClick={reset} className="min-h-11 rounded-xl bg-brand px-5 text-sm font-medium text-white hover:bg-brand/90">{query ? "Clear search" : "Show all items"}</button>;
     if (query) return <EmptyState title={`No results for “${query.trim()}”`} message="Try a different word, or check the spelling." action={clear} />;
     if (savedOnly) return <EmptyState title="No saved favorites yet" message="Tap the heart on any item to save it here." action={clear} />;
-    if (category !== "All") return <EmptyState title={`No ${category.toLowerCase()} match`} message="Try a different search or remove a filter." action={clear} />;
     return <EmptyState title="No items match your filters" message="Try removing a filter or two." action={clear} />;
   }
   function productSection(title: string, products: Product[], visible: Product[], id: string) {
@@ -85,7 +80,7 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
         <div className="flex"><button aria-label="Notifications" onClick={() => setNotice("Notifications will be available when accounts are added.")} className="flex h-11 w-9 items-center justify-center"><Icon name="bell" size={18} /></button><Link href="/cart" aria-label={`Shopping cart, ${cartTotals.itemCount} items`} className="relative flex h-11 w-9 items-center justify-center"><Icon name="cart" />{cartTotals.itemCount > 0 && <span aria-hidden="true" className="absolute top-0 right-0 min-w-4 rounded-full bg-brand px-1 text-center text-[10px] text-white">{cartTotals.itemCount}</span>}</Link></div>
       </header>
 
-      {menuOpen && <nav id="home-menu" aria-label="Menu" className="flex flex-wrap gap-2 border-b border-gray-100 p-4"><button className="rounded-lg bg-gray-50 px-4 py-3 text-sm" onClick={() => { reset(); setMenuOpen(false); }}>Browse all</button><button className="rounded-lg bg-fuchsia-50 px-4 py-3 text-sm text-brand" onClick={() => { setSavedOnly(true); setCategory("All"); setQuery(""); setMenuOpen(false); }}>Favorites ({favorites.length})</button></nav>}
+      {menuOpen && <nav id="home-menu" aria-label="Menu" className="flex flex-wrap gap-2 border-b border-gray-100 p-4"><button className="rounded-lg bg-gray-50 px-4 py-3 text-sm" onClick={() => { reset(); setMenuOpen(false); }}>Browse all</button><button className="rounded-lg bg-fuchsia-50 px-4 py-3 text-sm text-brand" onClick={() => { setSavedOnly(true); setQuery(""); setMenuOpen(false); }}>Favorites ({favorites.length})</button></nav>}
 
       {menuOpen && <button onClick={() => { setFiltersOpen(!filtersOpen); setMenuOpen(false); }} className="m-4 rounded-lg bg-gray-50 px-4 py-3 text-sm">Sort and favorites</button>}
 
@@ -106,13 +101,11 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
 
         <section aria-labelledby="category-heading" className="pt-2">
           <div className="mb-4 flex items-center justify-between gap-2"><h2 id="category-heading" className="text-[clamp(20px,5.8vw,24px)] font-medium">Browse by Category</h2><Link href={filtersLink} className="flex min-h-11 shrink-0 items-center text-base text-brand">View All</Link></div>
-          {categories.length ? <div className="category-scroll flex gap-0 overflow-x-auto pb-2">{categories.map(item => <button key={item.name} aria-pressed={category === item.name} onClick={() => { if (item.name === "More") { router.push(filtersLink); return; } setCategory(category === item.name ? "All" : item.name); setFilters(current => ({ ...current, categories: [] })); }} className="flex w-[103px] shrink-0 flex-col items-center gap-2 pb-2 text-base font-medium"><SafeImage src={`/images/${item.image}.png`} alt="" width={80} height={80} sizes="80px" className={`size-20 rounded-xl ${category === item.name ? "ring-2 ring-brand ring-offset-2" : ""}`} /><span>{item.name}</span></button>)}</div> : <EmptyState compact title="No categories yet" message="Categories will appear here soon." />}
+          {categories.length ? <div className="category-scroll flex gap-0 overflow-x-auto pb-2">{categories.map(item => <Link key={item.name} href={`/category/${item.slug}`} className="flex w-[103px] shrink-0 flex-col items-center gap-2 pb-2 text-base font-medium"><SafeImage src={`/images/${item.image}.png`} alt="" width={80} height={80} sizes="80px" className="size-20 rounded-xl" /><span>{item.name}</span></Link>)}</div> : <EmptyState compact title="No categories yet" message="Categories will appear here soon." />}
         </section>
-        {(category !== "All" || savedOnly || query) && <p role="status" className="text-sm text-gray-600">{savedOnly ? "Saved favorites" : category !== "All" ? category : "Search results"}{query && ` for “${query}”`}<button onClick={reset} className="ml-3 text-brand underline">Clear</button></p>}
+        {(savedOnly || query) && <p role="status" className="text-sm text-gray-600">{savedOnly ? "Saved favorites" : "Search results"}{query && ` for “${query}”`}<button onClick={reset} className="ml-3 text-brand underline">Clear</button></p>}
         {nothingMatches
           ? <section aria-label="Search results" id="seasonal">{noMatches()}</section>
-          : category !== "All"
-            ? productSection(category, categoryProducts, categoryVisible, "category-results")
           : <>
             {productSection("Seasonal Clothing", seasonalProducts, seasonalVisible, "seasonal")}
             {productSection("Recently posted", recentProducts, recentVisible, "recent")}
