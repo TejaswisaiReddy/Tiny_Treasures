@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { emptyFilters, parseFilters, filterHref, matchesFilters } from "../src/lib/product-filters.ts";
+import { categoryProducts, productImageSrc } from "../src/lib/products.ts";
 
 test("filter URLs preserve multiple choices, prices, and search text", () => {
   const filters = { ...emptyFilters(), categories: ["Clothes", "Books"], ages: ["3–6M"], brands: ["H&M"], minPrice: 10, maxPrice: 30 };
@@ -33,4 +34,13 @@ test("choices within groups use OR, groups use AND, and unknown fields do not ma
   assert.equal(matchesFilters({ ...product, ageGroup: undefined }, filters), false);
   assert.equal(matchesFilters({ ...product, condition: "Good" }, filters), false);
   assert.equal(matchesFilters(product, emptyFilters()), true);
+});
+
+test("browse categories have sample listings with matching category images", () => {
+  assert.deepEqual(categoryProducts.map(product => product.category), ["Books", "Puzzles", "Soft toys"]);
+  for (const product of categoryProducts) {
+    const category = product.category === "Soft toys" ? "Toys" : product.category;
+    assert.equal(matchesFilters(product, { ...emptyFilters(), categories: [category] }), true);
+    assert.equal(productImageSrc(product), product.image);
+  }
 });

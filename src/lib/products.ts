@@ -2,7 +2,7 @@ export type Product = {
   id: string;
   name: string;
   price: number;
-  /** File name, including extension, in /public/images/products. */
+  /** Product image file name or an absolute path within /public. */
   image?: string;
   category: string;
   ageGroup?: string;
@@ -27,13 +27,19 @@ export const recentProducts: Product[] = [
   { id: "wooden-blocks", name: "Wooden Alphabet Blocks", price: 8, image: "wooden-blocks.png", category: "Toys", size: "One size", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "Muted wooden alphabet and play blocks for early learning." },
   { id: "yellow-raincoat", name: "Yellow Raincoat", price: 15, image: "yellow-raincoat.png", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Bright yellow hooded raincoat with a snap front and roomy patch pockets." },
 ];
+export const categoryProducts: Product[] = [
+  { id: "picture-books", name: "Children's Picture Book Set", price: 10, image: "/images/books.png", category: "Books", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "A small set of colourful picture books for young readers." },
+  { id: "jigsaw-puzzle", name: "Colourful Jigsaw Puzzle", price: 8, image: "/images/puzzles.png", category: "Puzzles", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "A bright, child-friendly jigsaw puzzle for quiet play." },
+  { id: "plush-bunny", name: "Plush Bunny Soft Toy", price: 12, image: "/images/soft-toys.png", category: "Soft toys", size: "One size", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "A soft plush bunny ready for a new cuddle buddy." },
+];
 
 /** Public path of a product's photo, or undefined when it has none (SafeImage then shows its fallback). */
 export function productImageSrc(product: Pick<Product, "image">): string | undefined {
-  return product.image ? `/images/products/${product.image}` : undefined;
+  if (!product.image) return undefined;
+  return product.image.startsWith("/") ? product.image : `/images/products/${product.image}`;
 }
 
-export const allProducts = [...seasonalProducts, ...recentProducts];
+export const allProducts = [...seasonalProducts, ...recentProducts, ...categoryProducts];
 
 export type Seller = {
   name: string;

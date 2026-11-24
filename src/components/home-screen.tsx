@@ -10,7 +10,7 @@ import { ProductCard } from "@/components/product-card";
 import { useFavorites } from "@/components/favorites-provider";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { useCart } from "@/components/cart-provider";
-import { recentProducts, seasonalProducts, type Product } from "@/lib/products";
+import { categoryProducts, recentProducts, seasonalProducts, type Product } from "@/lib/products";
 import { activeFilterCount, emptyFilters, filterHref, matchesFilters, type ProductFilters } from "@/lib/product-filters";
 
 function Icon({ name, size = 20 }: { name: string; size?: number }) {
@@ -54,14 +54,15 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
   function focusSearch() { window.scrollTo({ top: 0 }); searchRef.current?.focus({ preventScroll: true }); }
   const seasonalVisible = filtered(seasonalProducts);
   const recentVisible = filtered(recentProducts);
-  const hasListings = seasonalProducts.length + recentProducts.length > 0;
-  const nothingMatches = hasListings && !seasonalVisible.length && !recentVisible.length;
+  const categoryVisible = filtered(categoryProducts);
+  const hasListings = seasonalProducts.length + recentProducts.length + categoryProducts.length > 0;
+  const nothingMatches = hasListings && !seasonalVisible.length && !recentVisible.length && !categoryVisible.length;
   // Explain why the list is empty, and offer the one action that brings items back.
   function noMatches() {
     const clear = <button type="button" onClick={reset} className="min-h-11 rounded-xl bg-brand px-5 text-sm font-medium text-white hover:bg-brand/90">{query ? "Clear search" : "Show all items"}</button>;
     if (query) return <EmptyState title={`No results for “${query.trim()}”`} message="Try a different word, or check the spelling." action={clear} />;
     if (savedOnly) return <EmptyState title="No saved favorites yet" message="Tap the heart on any item to save it here." action={clear} />;
-    if (category !== "All") return <EmptyState title={`No ${category.toLowerCase()} yet`} message="New treasures are added all the time. Check back soon." action={clear} />;
+    if (category !== "All") return <EmptyState title={`No ${category.toLowerCase()} match`} message="Try a different search or remove a filter." action={clear} />;
     return <EmptyState title="No items match your filters" message="Try removing a filter or two." action={clear} />;
   }
   function productSection(title: string, products: Product[], visible: Product[], id: string) {
@@ -110,6 +111,8 @@ export default function HomeScreen({ initialFilters, initialQuery }: { initialFi
         {(category !== "All" || savedOnly || query) && <p role="status" className="text-sm text-gray-600">{savedOnly ? "Saved favorites" : category !== "All" ? category : "Search results"}{query && ` for “${query}”`}<button onClick={reset} className="ml-3 text-brand underline">Clear</button></p>}
         {nothingMatches
           ? <section aria-label="Search results" id="seasonal">{noMatches()}</section>
+          : category !== "All"
+            ? productSection(category, categoryProducts, categoryVisible, "category-results")
           : <>
             {productSection("Seasonal Clothing", seasonalProducts, seasonalVisible, "seasonal")}
             {productSection("Recently posted", recentProducts, recentVisible, "recent")}
