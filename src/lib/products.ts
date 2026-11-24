@@ -2,7 +2,7 @@ export type Product = {
   id: string;
   name: string;
   price: number;
-  /** File name (without extension) in /public/images/products. Omit until a real photo exists. */
+  /** File name, including extension, in /public/images/products. */
   image?: string;
   category: string;
   ageGroup?: string;
@@ -15,24 +15,22 @@ export type Product = {
 };
 
 // Temporary sample listings. A database will supply these in a later step.
-const details = { category: "Clothing", size: "120", condition: "Good", location: "Tampere", rating: "4.8" };
 export const seasonalProducts: Product[] = [
-  { ...details, id: "pink-1", name: "Pink Puffer Jacket", price: 24, image: "pink-jacket" },
-  { ...details, id: "pink-2", name: "Pink Puffer Jacket", price: 24, image: "pink-jacket" },
+  { id: "pink-1", name: "Pink Hooded Puffer Jacket", price: 24, image: "pink-jacket.png", category: "Clothing", size: "110", ageGroup: "4–5Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Warm pink padded coat with a hood and dark star-print lining." },
+  { id: "winter-1", name: "Orange and Yellow Winter Snowsuit", price: 28, image: "winter-jacket.png", category: "Clothing", size: "92", ageGroup: "1–2Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Bright mustard-and-orange hooded winter snowsuit with warm quilted panels." },
 ];
 export const recentProducts: Product[] = [
-  { id: "hm-jumpsuit", name: "H&M Jumpsuit", price: 15, image: "jumpsuit", category: "Clothing", size: "92", ageGroup: "1–2Y", brand: "H&M", condition: "Excellent", location: "Tampere", rating: "4.9", shortDescription: "Size: 92 (18–24M)" },
-  { id: "yellow-raincoat", name: "Yellow Raincoat", price: 22.5, image: "yellow-raincoat", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Size: 104 (3–4Y)" },
-  { id: "wooden-blocks", name: "Wooden Blocks Set", price: 12, image: "wooden-blocks", category: "Toys", size: "One size", condition: "New with tags", location: "Tampere", rating: "4.8", shortDescription: "Eco-friendly Wood" },
-  { ...details, id: "winter-1", name: "Winter jacket", price: 30, image: "winter-jacket" },
-  // No photos yet for the rain jackets: they show the image fallback until real photos are added.
-  { ...details, id: "rain-1", name: "Rain Jacket", price: 15 },
-  { ...details, id: "rain-2", name: "Rain Jacket", price: 15 },
+  { id: "hm-jumpsuit", name: "Navy Baby Jumpsuit", price: 12, image: "jumpsuit.png", category: "Clothing", size: "92", ageGroup: "1–2Y", condition: "Good", location: "Tampere", rating: "4.9", shortDescription: "Dark navy long-sleeve one-piece with a button front and full-length legs." },
+  { id: "scooter", name: "Green Three-Wheel Kids' Scooter", price: 18, image: "scooter.jpg", category: "Toys", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Green three-wheel kick scooter with a wide deck and child-size hand grips." },
+  { id: "stroller", name: "Navy Stroller with Red Canopy", price: 30, image: "stroller.jpg", category: "Baby Gear", size: "One size", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Navy stroller with a red canopy, safety harness and under-seat basket." },
+  { id: "white-frock", name: "White Tulle Party Dress", price: 18, image: "white-frock.jpg", category: "Clothing", size: "110", ageGroup: "4–5Y", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "White sleeveless party dress with a gathered tulle skirt." },
+  { id: "wooden-blocks", name: "Wooden Alphabet Blocks", price: 8, image: "wooden-blocks.png", category: "Toys", size: "One size", condition: "Like new", location: "Tampere", rating: "4.8", shortDescription: "Muted wooden alphabet and play blocks for early learning." },
+  { id: "yellow-raincoat", name: "Yellow Hooded Kids' Raincoat", price: 15, image: "yellow-raincoat.png", category: "Clothing", size: "104", ageGroup: "3–4Y", condition: "Good", location: "Tampere", rating: "4.8", shortDescription: "Bright yellow hooded raincoat with a snap front and roomy patch pockets." },
 ];
 
 /** Public path of a product's photo, or undefined when it has none (SafeImage then shows its fallback). */
 export function productImageSrc(product: Pick<Product, "image">): string | undefined {
-  return product.image ? `/images/products/${product.image}.png` : undefined;
+  return product.image ? `/images/products/${product.image}` : undefined;
 }
 
 export const allProducts = [...seasonalProducts, ...recentProducts];
@@ -62,9 +60,9 @@ export function getItemDetails(id: string): ItemDetails | undefined {
   if (id === "hm-jumpsuit") {
     return {
       product,
-      description: "Great condition, soft and comfy navy corduroy jumpsuit. Perfect for playtime, outings, or casual days. Easy to wear and adjust. Washed only with fragrance-free baby detergent.",
+      description: product.shortDescription ?? `${product.name} in ${product.condition.toLowerCase()} condition, size ${product.size}.`,
       sizeLabel: "Size 92 (1.5-2Y)",
-      color: "Navy Black",
+      color: "Navy",
       pickup: "Pickup in Kaleva, Tampere",
       seller: { name: "Aisha", avatar: "/images/item/seller-aisha.png", rating: "4.9", reviewCount: 12, verified: true, responseTime: "Responds in 1 hr" },
     };
@@ -72,7 +70,7 @@ export function getItemDetails(id: string): ItemDetails | undefined {
 
   return {
     product,
-    description: `${product.name} in ${product.condition.toLowerCase()} condition, size ${product.size}. This is a sample listing. A full seller description will be available when real listings are added.`,
+    description: product.shortDescription ?? `${product.name} in ${product.condition.toLowerCase()} condition, size ${product.size}.`,
     sizeLabel: `Size ${product.size}`,
     pickup: `Pickup in ${product.location}`,
   };

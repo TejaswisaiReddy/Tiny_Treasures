@@ -1,10 +1,10 @@
 import type { Product } from "./products";
 
 export const filterOptions = {
-  categories: ["Clothes", "Toys", "Books", "Puzzles", "Accessories"],
-  ages: ["0–3M", "3–6M", "6–12M", "1–2Y", "2–3Y", "3–4Y"],
-  sizes: ["50-56cm", "62-68cm", "74-80cm", "86-92cm", "98-104cm"],
-  conditions: ["New with tags", "Excellent", "Very Good", "Good", "Slightly Used"],
+  categories: ["Clothes", "Toys", "Baby Gear", "Books", "Puzzles", "Accessories"],
+  ages: ["0–3M", "3–6M", "6–12M", "1–2Y", "2–3Y", "3–4Y", "4–5Y"],
+  sizes: ["50-56cm", "62-68cm", "74-80cm", "86-92cm", "98-104cm", "110-116cm"],
+  conditions: ["Like new", "Good", "Fair"],
   brands: ["Zara Kids", "H&M", "Reima", "Kappahl", "Gap Kids"],
 };
 
